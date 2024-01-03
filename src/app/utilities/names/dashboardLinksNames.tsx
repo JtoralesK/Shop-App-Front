@@ -38,4 +38,9 @@ export const linksNamesProfile: LinksNamesProfile[] = [
     name: "Change Password",
     key: 2,
   },
+  {
+    href: "/dashboard/profile/changeImageProfile",
+    name: "Change Image ",
+    key: 3,
+  },
 ];
