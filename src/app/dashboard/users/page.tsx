@@ -1,7 +1,14 @@
+"use client";
 import { SearchInput } from "@/app/UI/searchInput";
+import { usersArray } from "@/app/utilities/users";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 export default function Users() {
-  const arrar = [1, 2, 3, 4, 5];
+  const router = useRouter();
+  let cont = 0;
+  const redirect = (userId: number) => {
+    router.push("/dashboard/users/" + userId);
+  };
   return (
     <>
       <div className="w-full h-4/6 bg-firstWhite rounded-lg p-4">
@@ -25,29 +32,37 @@ export default function Users() {
             </tr>
           </thead>
           <tbody>
-            {arrar.map((item) => {
-              return (
-                <tr key={item}>
-                  <td>
-                    <div className="p-2 flex flex-row">
-                      <Image width={40} height={40} src={""} alt="" />
-                      Jhoony deep
-                    </div>
-                  </td>
-                  <td>jhohn@gmail.com</td>
-                  <td>13.01.2003</td>
-                  <td>Admin</td>
-                  <td>Active</td>
-                  <td className=" flex flex-row gap-2">
-                    <button className="bg-green-400 p-2 h-10 rounded-lg">
-                      View
-                    </button>
-                    <button className="bg-red-400 p-2 h-10 rounded-lg">
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              );
+            {usersArray.map((item) => {
+              if (cont < 5) {
+                cont++;
+                return (
+                  <tr key={item.userId}>
+                    <td>
+                      <div className="p-2 flex flex-row">
+                        <Image width={40} height={40} src={""} alt="" />
+                        {item.name}
+                      </div>
+                    </td>
+                    <td>{item.email}</td>
+                    <td>{item.createdAt}</td>
+                    <td>Admin</td>
+                    <td>{item.active ? "Active" : "Inactive"}</td>
+                    <td className=" flex flex-row gap-2">
+                      <button
+                        onClick={() => {
+                          redirect(item.userId);
+                        }}
+                        className="bg-green-400 p-2 h-10 rounded-lg"
+                      >
+                        View
+                      </button>
+                      <button className="bg-red-400 p-2 h-10 rounded-lg">
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              }
             })}
           </tbody>
         </table>
