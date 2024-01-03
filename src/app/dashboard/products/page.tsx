@@ -1,8 +1,14 @@
+"use client";
 import Image from "next/image";
 import { SearchInput } from "@/app/UI/searchInput";
-export default function Products() {
-  const arrar = [1, 2, 3, 4, 5];
+import { useRouter } from "next/navigation";
 
+export default function Products() {
+  const router = useRouter();
+  const arrar = [1, 2, 3, 4, 5];
+  const redirect = () => {
+    router.push("/dashboard/products/addOne");
+  };
   return (
     <>
       <div className="w-full h-4/6 bg-firstWhite rounded-lg p-4">
@@ -10,7 +16,10 @@ export default function Products() {
           <div className="w-2/12">
             <SearchInput placeholder="Search for a user" />
           </div>
-          <button className="bg-primary p-1 rounded-md text-firstWhite">
+          <button
+            onClick={redirect}
+            className="bg-primary p-1 rounded-md text-firstWhite"
+          >
             Add New
           </button>
         </div>
