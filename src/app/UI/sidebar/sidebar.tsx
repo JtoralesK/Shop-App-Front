@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { MenuLink } from "../../UI/menuLink";
+import { MenuLink } from "../menuLink";
 import { usePathname } from "next/navigation";
 import { linksNames } from "@/app/utilities/names/dashboardLinksNames";
 export function Sidebar() {
