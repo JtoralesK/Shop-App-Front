@@ -28,7 +28,7 @@ export const usersArray: User[] = [
     active: true,
     genre: "Male",
     createdAt: "2023-12-01",
-    profileImg: "/fotoPerfil1.png",
+    profileImg: "/johnProfile.webp",
   },
   {
     name: "Alice",
@@ -43,7 +43,7 @@ export const usersArray: User[] = [
     active: true,
     genre: "Female",
     createdAt: "2023-11-15",
-    profileImg: "/fotoPerfil1.png",
+    profileImg: "/aliceProfile.jpeg",
   },
   {
     name: "Emma",
@@ -58,7 +58,7 @@ export const usersArray: User[] = [
     active: true,
     genre: "Female",
     createdAt: "2023-10-20",
-    profileImg: "/fotoPerfil1.png",
+    profileImg: "/emaProfile.webp",
   },
   {
     name: "Michael",
@@ -73,7 +73,7 @@ export const usersArray: User[] = [
     active: true,
     genre: "Male",
     createdAt: "2023-09-05",
-    profileImg: "/fotoPerfil1.png",
+    profileImg: "/michaelProfile.webp",
   },
   {
     name: "Sophia",
@@ -88,7 +88,7 @@ export const usersArray: User[] = [
     active: true,
     genre: "Female",
     createdAt: "2023-10-10",
-    profileImg: "/fotoPerfil1.png",
+    profileImg: "/sofiaPicture.jpg",
   },
   {
     name: "Daniel",
