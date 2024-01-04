@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
-import { Sidebar } from "../components/sidebar/sidebar";
-import { Navbar } from "../components/navbar";
+import { Sidebar } from "../UI/sidebar/sidebar";
+import { Navbar } from "../UI/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 export default function Layout({ children }: { children: React.ReactNode }) {
