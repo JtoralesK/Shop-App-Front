@@ -1,8 +1,8 @@
-import { ProfileUser } from "@/app/components/profile";
+import { UserComponent } from "@/app/components/user";
 export default function Profile() {
   return (
     <>
-      <ProfileUser></ProfileUser>
+      <UserComponent userId={1} />
     </>
   );
 }
