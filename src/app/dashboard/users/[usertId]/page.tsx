@@ -1,5 +1,5 @@
 "use client";
-import { ProfileUser } from "@/app/components/profile";
+import { UserComponent } from "@/app/components/user";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -31,7 +31,7 @@ export default function UserView({ params }: any) {
           </div>
         </div>
         <div className="w-10/12 h-[85vh] bg-firstWhite flex flex-col gap-3 rounded-r-2xl  p-4">
-          <ProfileUser userId={id} />
+          <UserComponent userId={id} />
         </div>
       </div>
     </div>
