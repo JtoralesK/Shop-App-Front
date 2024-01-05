@@ -10,10 +10,10 @@ export interface Product {
   productId: number;
 }
 
-export const productosArray: Product[] = [
+export const productsArray: Product[] = [
   {
     name: "Camiseta básica",
-    description: "Camiseta de algodón suave",
+    description: "Camiseta de algodón suave", // varchar[30]
     price: 15.99,
     stock: 50,
     image: "camiseta.jpg",
