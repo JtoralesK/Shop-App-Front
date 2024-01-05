@@ -1,18 +1,36 @@
-"use client";
 import Image from "next/image";
 import { SearchInput } from "@/app/UI/searchInput";
-import { useRouter } from "next/navigation";
-import { productosArray } from "@/app/utilities/products";
+import { Product } from "@/app/utilities/products";
+import { filteredProductsByName, getAllProducts } from "@/app/lib/data";
+import { Pagination } from "@/app/UI/pagination";
 import Link from "next/link";
-export default function Products() {
-  const router = useRouter();
+export default async function Products({
+  searchParams,
+}: {
+  searchParams: {
+    q?: string;
+    page?: string;
+  };
+}) {
+  let products = [] as Product[];
+  const q = searchParams?.q || "";
+  const page = Number(searchParams?.page) || 1;
   let cont = 0;
-  const redirectAddOne = () => {
-    router.push("/dashboard/products/addOne");
-  };
-  const redirect = (p: number) => {
-    router.push("/dashboard/products/addOne");
-  };
+  let total = 1;
+  try {
+    if (q) {
+      let { productsArray, totalPages } = await filteredProductsByName(q, page);
+      products = productsArray;
+      total = totalPages;
+    } else {
+      let { productsArray, totalPages } = await getAllProducts(page);
+      products = productsArray;
+      total = totalPages;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+
   return (
     <>
       <div className="w-full h-4/6 bg-firstWhite rounded-lg p-4">
@@ -20,12 +38,11 @@ export default function Products() {
           <div className="w-2/12">
             <SearchInput placeholder="Search for a product" />
           </div>
-          <button
-            onClick={redirectAddOne}
-            className="bg-primary p-1 rounded-md text-firstWhite"
-          >
-            Add New
-          </button>
+          <Link href={"/dashboard/products/addOne"}>
+            <button className="bg-primary p-1 rounded-md text-firstWhite">
+              Add New
+            </button>
+          </Link>
         </div>
         <div className="overflow-hidden rounded-lg">
           <table className="w-full">
@@ -40,7 +57,7 @@ export default function Products() {
               </tr>
             </thead>
             <tbody className="bg-secondary">
-              {productosArray.map((item) => {
+              {products.map((item) => {
                 if (cont < 5) {
                   cont++;
                   return (
@@ -67,14 +84,13 @@ export default function Products() {
                       <td className="h-full  ">
                         <div className="flex justify-center">
                           <div className="flex flex-row gap-2">
-                            <button
-                              onClick={() => {
-                                redirect(item.productId);
-                              }}
-                              className="bg-green-400 p-2 h-10 rounded-lg"
+                            <Link
+                              href={"/dashboard/products/" + item.productId}
                             >
-                              View
-                            </button>
+                              <button className="bg-green-400 p-2 h-10 rounded-lg">
+                                View
+                              </button>
+                            </Link>
                             <button className="bg-red-400 p-2 h-10 rounded-lg">
                               Delete
                             </button>
@@ -88,15 +104,10 @@ export default function Products() {
             </tbody>
           </table>
         </div>
-        <div className="h-14  w-full flex flex-row justify-between  items-center ">
-          <div>
-            <button className="bg-orange-200 p-1 rounded-md text-firstWhite">
-              Previous
-            </button>
+        <div className="h-14  w-full flex justify-center  items-center ">
+          <div className="mt-6">
+            <Pagination totalPages={total} currentPage={page} />
           </div>
-          <button className="bg-orange-200 p-1 rounded-md text-firstWhite">
-            Next
-          </button>
         </div>
       </div>
     </>
