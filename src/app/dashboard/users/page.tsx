@@ -1,14 +1,36 @@
-"use client";
 import { SearchInput } from "@/app/UI/searchInput";
-import { usersArray } from "@/app/utilities/users";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-export default function Users() {
-  const router = useRouter();
-  let cont = 0;
-  const redirect = (userId: number) => {
-    router.push("/dashboard/users/" + userId);
+import { filteredUsersByName, getAllUsers } from "@/app/lib/data";
+import { User } from "@/app/utilities/users";
+import { TableUsers } from "@/app/UI/table";
+import { Suspense } from "react";
+import { Pagination } from "@/app/UI/pagination";
+export default async function Users({
+  searchParams,
+}: {
+  searchParams: {
+    q?: string;
+    page?: string;
   };
+}) {
+  let users = [] as User[];
+  const q = searchParams?.q || "";
+  const page = Number(searchParams?.page) || 1;
+  let total = 1;
+  try {
+    if (q) {
+      let { userArray, totalPages } = await filteredUsersByName(q, page);
+      users = userArray;
+      total = totalPages;
+    } else {
+      let { userArray, totalPages } = await getAllUsers(page);
+      users = userArray;
+      total = totalPages;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+
   return (
     <>
       <div className="w-full h-4/6 bg-firstWhite rounded-lg p-4">
@@ -21,81 +43,24 @@ export default function Users() {
           </button>
         </div>
         <div className="overflow-hidden rounded-lg ">
-          <table className="w-full">
-            <thead className="bg-primary">
-              <tr className="text-left">
-                <th className="w-3/12  text-center text-firstWhite">
-                  Full name
-                </th>
-                <th className="w-3/12  text-center text-firstWhite ">Email</th>
-                <th className="w-2/12  text-center text-firstWhite">
-                  Created at
-                </th>
-                <th className="w-1/12  text-center text-firstWhite">Rol</th>
-                <th className="w-1/12  text-center text-firstWhite">Status</th>
-                <th className="w-2/12  text-center text-firstWhite">Action</th>
-              </tr>
-            </thead>
-            <tbody className="bg-secondary">
-              {usersArray.map((item) => {
-                if (cont < 5) {
-                  cont++;
-                  return (
-                    <tr className="h-14" key={item.userId}>
-                      <td className="h-full ">
-                        <div className="flex justify-center  items-center px-4">
-                          <div className="w-11/12 flex flex-row items-center justify-start gap-2 h-full ">
-                            <Image
-                              className="w-8 rounded-3xl"
-                              width={40}
-                              height={40}
-                              src={item.profileImg}
-                              alt="Avatar"
-                            />
-                            {item.name} {item.lastName}
-                          </div>
-                        </div>
-                      </td>
-                      <td className="text-center ">{item.email}</td>
-                      <td className="text-center ">{item.createdAt}</td>
-                      <td className="text-center ">Admin</td>
-                      <td className="text-center ">
-                        {item.active ? "Active" : "Inactive"}
-                      </td>
-                      <td className="h-full  ">
-                        <div className="flex justify-center">
-                          <div className="flex flex-row gap-2">
-                            <button
-                              onClick={() => {
-                                redirect(item.userId);
-                              }}
-                              className="bg-green-400 p-2 h-10 rounded-lg"
-                            >
-                              View
-                            </button>
-                            <button className="bg-red-400 p-2 h-10 rounded-lg">
-                              Delete
-                            </button>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                }
-              })}
-            </tbody>
-          </table>
-        </div>
-
-        <div className="h-14  w-full flex flex-row justify-between  items-center ">
-          <div>
-            <button className="bg-orange-200 p-1 rounded-md text-firstWhite">
-              Previous
-            </button>
+          <Suspense fallback={"loading"} key={q + page}>
+            <TableUsers
+              users={users}
+              q={q}
+              redirect={() => {}}
+              files={[
+                { title: "Full name", wP: 3, id: 1 },
+                { title: "Email", wP: 3, id: 2 },
+                { title: "Created At", wP: 2, id: 3 },
+                { title: "Rol", wP: 1, id: 4 },
+                { title: "Status", wP: 1, id: 5 },
+                { title: "Action", wP: 2, id: 6 },
+              ]}
+            />
+          </Suspense>
+          <div className="mt-6">
+            <Pagination totalPages={total} currentPage={page} />
           </div>
-          <button className="bg-orange-200 p-1 rounded-md text-firstWhite">
-            Next
-          </button>
         </div>
       </div>
     </>
