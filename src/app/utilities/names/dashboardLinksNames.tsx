@@ -1,4 +1,11 @@
-import { FaMap, FaHome, FaUnlock, FaUsers, FaBoxOpen } from "react-icons/fa";
+import {
+  FaMap,
+  FaHome,
+  FaFileInvoiceDollar,
+  FaUsers,
+  FaBoxOpen,
+} from "react-icons/fa";
+import { LiaFileInvoiceSolid } from "react-icons/lia";
 import { BiSolidLogOut } from "react-icons/bi";
 type LinksNames = {
   href: string;
@@ -26,7 +33,12 @@ export const linksNames: LinksNames[] = [
     icon: <FaBoxOpen />,
     key: 3,
   },
-  { href: "/dashboard/unlock", name: "Unlock", icon: <FaUnlock />, key: 4 },
+  {
+    href: "/dashboard/invoices",
+    name: "Invoices",
+    icon: <FaFileInvoiceDollar />,
+    key: 4,
+  },
   { href: "/dashboard/map", name: "Map", icon: <FaMap />, key: 5 },
   { href: "/login", name: "Logout", icon: <BiSolidLogOut />, key: 6 },
 ];
