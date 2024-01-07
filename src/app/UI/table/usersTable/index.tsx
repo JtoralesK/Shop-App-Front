@@ -1,38 +1,41 @@
+"use client";
 import Image from "next/image";
 import { User } from "@/app/utilities/users";
-import { Th } from "@/app/UI/thComp";
 import Link from "next/link";
-type Thprops = {
-  title: string;
-  wP: number;
-  id: number;
-};
+import { Pagination } from "@/app/UI/pagination";
+import { Theah } from "../thead";
+import { Modal } from "../../modal";
+import { useState } from "react";
 type Props = {
   users: User[];
-  redirect: (userId: number) => void;
-  files: Thprops[];
-  q: string;
+  totalPages: number;
+  currentPage: number;
 };
 export function TableUsers(p: Props) {
-  let cont = 0;
+  const [isOpen, setOpen] = useState(false);
+  const [id, setId] = useState(0);
+  const deleteItem = (id: number) => {
+    setOpen(!isOpen);
+    setId(id);
+  };
   return (
     <>
-      <table className="w-full">
-        <thead className="bg-primary">
-          <tr className="text-left">
-            {p.files.map((item) => {
-              return (
-                <>
-                  <Th key={item.id} width={item.wP} title={item.title} />
-                </>
-              );
-            })}
-          </tr>
-        </thead>
-        <tbody className="bg-secondary">
-          {p.users.map((item) => {
-            if (cont < 5) {
-              cont++;
+      <Modal category="user" isOpen={isOpen} setOpen={setOpen} itemId={id} />
+      <div className="overflow-hidden rounded-lg ">
+        <table className="w-full">
+          <Theah
+            files={[
+              { title: "Full name", wP: 3, id: 1 },
+              { title: "Email", wP: 3, id: 2 },
+              { title: "Created At", wP: 2, id: 3 },
+              { title: "Rol", wP: 1, id: 4 },
+              { title: "Status", wP: 1, id: 5 },
+              { title: "Action", wP: 2, id: 6 },
+            ]}
+          />
+
+          <tbody className="bg-secondary">
+            {p.users.map((item) => {
               return (
                 <tr className="h-14" key={item && item.userId}>
                   <td className="h-full ">
@@ -63,8 +66,12 @@ export function TableUsers(p: Props) {
                             View
                           </button>
                         </Link>
-
-                        <button className="bg-red-400 p-2 h-10 rounded-lg">
+                        <button
+                          onClick={() => {
+                            deleteItem(item.userId);
+                          }}
+                          className="bg-red-400 p-2 h-10 rounded-lg"
+                        >
                           Delete
                         </button>
                       </div>
@@ -72,10 +79,13 @@ export function TableUsers(p: Props) {
                   </td>
                 </tr>
               );
-            }
-          })}
-        </tbody>
-      </table>
+            })}
+          </tbody>
+        </table>
+        <div className="mt-6">
+          <Pagination totalPages={p.totalPages} currentPage={p.currentPage} />
+        </div>
+      </div>
     </>
   );
 }
