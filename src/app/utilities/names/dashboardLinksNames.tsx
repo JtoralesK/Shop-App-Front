@@ -39,7 +39,7 @@ export const linksNames: LinksNames[] = [
     icon: <FaFileInvoiceDollar />,
     key: 4,
   },
-  { href: "/dashboard/map", name: "Map", icon: <FaMap />, key: 5 },
+  { href: "/dashboard/reports", name: "Reports", icon: <FaMap />, key: 5 },
   { href: "/login", name: "Logout", icon: <BiSolidLogOut />, key: 6 },
 ];
 

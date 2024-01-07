@@ -1,5 +1,6 @@
 import { usersArray } from "../utilities/users";
 import { productsArray } from "../utilities/products";
+import { invoicesArray } from "../utilities/invoices";
 export const filteredUsersByName = async (q: any, page: number) => {
   const limit = 5;
   const offset = (page - 1) * limit;
@@ -59,6 +60,40 @@ export const getAllProducts = async (page: number) => {
   const obj = {
     totalPages: Math.ceil(productsArray.length / 5),
     productsArray: productsArray.slice(offset, offset + limit),
+  };
+  return fetch("https://pokeapi.co/api/v2/pokemon-form/132/")
+    .then((response) => response.json())
+    .then((json) => {
+      return obj;
+    });
+};
+//invoices
+export const filteredInvoicessByName = async (q: any, page: number) => {
+  const limit = 5;
+  const offset = (page - 1) * limit;
+  const filteredInvoices = invoicesArray.filter((user) =>
+    user.invoiceCustomer.toLowerCase().startsWith(q.toLowerCase())
+  );
+  const obj = {
+    totalPages: Math.ceil(filteredInvoices.length / 5),
+    invoicesArray: filteredInvoices
+      .slice(offset, offset + limit)
+      .filter((invoice) =>
+        invoice.invoiceCustomer.toLowerCase().startsWith(q.toLowerCase())
+      ),
+  };
+  return fetch("https://pokeapi.co/api/v2/pokemon-form/132/")
+    .then((response) => response.json())
+    .then((json) => {
+      return obj;
+    });
+};
+export const getAllInvoices = async (page: number) => {
+  const limit = 5;
+  const offset = (page - 1) * limit;
+  const obj = {
+    totalPages: Math.ceil(invoicesArray.length / 5),
+    invoicesArray: invoicesArray.slice(offset, offset + limit),
   };
   return fetch("https://pokeapi.co/api/v2/pokemon-form/132/")
     .then((response) => response.json())

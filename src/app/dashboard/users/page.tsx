@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { filteredUsersByName, getAllUsers } from "@/app/lib/data";
 import { User } from "@/app/utilities/users";
 import { TableUsers } from "@/app/UI/table/usersTable";
 import { Suspense } from "react";
 import { TableLayout } from "@/app/UI/tableLayout";
-import { Modal } from "@/app/UI/modal";
 export default async function Users({
   searchParams,
 }: {
