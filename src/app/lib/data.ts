@@ -1,7 +1,6 @@
 import { usersArray } from "../utilities/users";
 import { productsArray } from "../utilities/products";
 export const filteredUsersByName = async (q: any, page: number) => {
-  console.log("filter");
   const limit = 5;
   const offset = (page - 1) * limit;
   const filteredUsers = usersArray.filter((user) =>
@@ -26,7 +25,6 @@ export const getAllUsers = async (page: number) => {
     totalPages: Math.ceil(usersArray.length / 5),
     userArray: usersArray.slice(offset, offset + limit),
   };
-  console.log("get all");
   return fetch("https://pokeapi.co/api/v2/pokemon-form/132/")
     .then((response) => response.json())
     .then((json) => {
@@ -36,7 +34,6 @@ export const getAllUsers = async (page: number) => {
 
 //products
 export const filteredProductsByName = async (q: any, page: number) => {
-  console.log("filter");
   const limit = 5;
   const offset = (page - 1) * limit;
   const filteredProducts = productsArray.filter((user) =>
@@ -63,7 +60,6 @@ export const getAllProducts = async (page: number) => {
     totalPages: Math.ceil(productsArray.length / 5),
     productsArray: productsArray.slice(offset, offset + limit),
   };
-  console.log("get all");
   return fetch("https://pokeapi.co/api/v2/pokemon-form/132/")
     .then((response) => response.json())
     .then((json) => {
