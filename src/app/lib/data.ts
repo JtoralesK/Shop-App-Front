@@ -1,6 +1,6 @@
 import { usersArray } from "../utilities/users";
 import { productsArray } from "../utilities/products";
-import { invoicesArray } from "../utilities/invoices";
+import { Invoices, invoicesArray } from "../utilities/invoices";
 export const filteredUsersByName = async (q: any, page: number) => {
   const limit = 5;
   const offset = (page - 1) * limit;
@@ -71,15 +71,15 @@ export const getAllProducts = async (page: number) => {
 export const filteredInvoicessByName = async (q: any, page: number) => {
   const limit = 5;
   const offset = (page - 1) * limit;
-  const filteredInvoices = invoicesArray.filter((user) =>
-    user.invoiceCustomer.toLowerCase().startsWith(q.toLowerCase())
+  const filteredInvoices = invoicesArray.filter((invoice: Invoices) =>
+    invoice.customer.toLowerCase().startsWith(q.toLowerCase())
   );
   const obj = {
     totalPages: Math.ceil(filteredInvoices.length / 5),
     invoicesArray: filteredInvoices
       .slice(offset, offset + limit)
-      .filter((invoice) =>
-        invoice.invoiceCustomer.toLowerCase().startsWith(q.toLowerCase())
+      .filter((invoice: Invoices) =>
+        invoice.customer.toLowerCase().startsWith(q.toLowerCase())
       ),
   };
   return fetch("https://pokeapi.co/api/v2/pokemon-form/132/")
