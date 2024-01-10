@@ -3,6 +3,8 @@ import Dropdown from "@/app/UI/dropdown";
 import CustomDatPicker from "@/app/UI/datespeaker";
 import Image from "next/image";
 export function ProductComponent() {
+  const items = ["Female pant", "Man cloth", "Sport short", "Sport Shoes"]; // Aquí tus elementos de dropdown
+
   return (
     <div className="flex justify-center">
       <div
@@ -20,8 +22,8 @@ export function ProductComponent() {
               <LabelText placeholder="Your product name" label="Product name" />
             </div>
             <div className="flex flex-row gap-1 h-1/4 items-center">
-              <Dropdown />
-              <Dropdown />
+              <Dropdown items={items} placeholder="Select Category" />
+              <Dropdown items={items} placeholder="Select Category" />
             </div>
             <div className="h-1/4">
               <LabelText
