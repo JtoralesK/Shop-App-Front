@@ -5,6 +5,7 @@ type Props = {
   icon: React.ReactNode;
   href: string;
   active: boolean;
+  top?: string;
 };
 
 export function MenuLink(p: Props) {
@@ -12,7 +13,9 @@ export function MenuLink(p: Props) {
     <div
       className={`${p.active && "bg-secondary text-black"} ${
         p.active ? "text-forth" : "text-firstWhite"
-      } hover:font-bold flex flex-row gap-3 text-lg items-center cursor-pointer  w-9/12 p-2 rounded-lg pl-6`}
+      } hover:font-bold flex flex-row gap-3 text-lg items-center cursor-pointer  w-9/12 p-2 rounded-lg pl-6 ${
+        p.top && p.top
+      }`}
     >
       {p.icon}
       <Link href={p.href}>{p.name}</Link>
