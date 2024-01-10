@@ -5,7 +5,7 @@ import {
   FaUsers,
   FaBoxOpen,
 } from "react-icons/fa";
-import { LiaFileInvoiceSolid } from "react-icons/lia";
+import { GiReceiveMoney } from "react-icons/gi";
 import { BiSolidLogOut } from "react-icons/bi";
 type LinksNames = {
   href: string;
@@ -21,26 +21,32 @@ type LinksNamesProfile = {
 export const linksNames: LinksNames[] = [
   { href: "/dashboard", name: "Workbench", icon: <FaHome />, key: 1 },
   {
+    href: "/dashboard/invoices/add",
+    name: "Add Sale",
+    icon: <GiReceiveMoney />,
+    key: 2,
+  },
+  {
     href: "/dashboard/users",
     name: "Users",
     icon: <FaUsers />,
-    key: 2,
+    key: 3,
   },
 
   {
     href: "/dashboard/products",
     name: "Products",
     icon: <FaBoxOpen />,
-    key: 3,
+    key: 4,
   },
   {
     href: "/dashboard/invoices",
     name: "Invoices",
     icon: <FaFileInvoiceDollar />,
-    key: 4,
+    key: 5,
   },
-  { href: "/dashboard/reports", name: "Reports", icon: <FaMap />, key: 5 },
-  { href: "/login", name: "Logout", icon: <BiSolidLogOut />, key: 6 },
+  { href: "/dashboard/reports", name: "Reports", icon: <FaMap />, key: 6 },
+  { href: "/login", name: "Logout", icon: <BiSolidLogOut />, key: 7 },
 ];
 
 export const linksNamesProfile: LinksNamesProfile[] = [
