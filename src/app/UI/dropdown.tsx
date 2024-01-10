@@ -1,15 +1,25 @@
 "use client";
 import { useState } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
-const Dropdown = () => {
-  const [selectedItem, setSelectedItem] = useState(null);
+type Prop = {
+  items: string[];
+  placeholder: string;
+};
+export const Dropdown = (p: Prop) => {
+  const [selectedItem, setSelectedItem] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-
-  const items = ["Female pant", "Man cloth", "Sport short", "Sport Shoes"]; // Aquí tus elementos de dropdown
-
-  const handleItemClick = (item: any) => {
+  const dropdownClick = () => {
+    console.log("click");
+    setIsOpen(!isOpen);
+  };
+  const handleItemClick = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    item: string
+  ) => {
     setSelectedItem(item);
     setIsOpen(false);
+    event.stopPropagation();
+    event.nativeEvent.stopImmediatePropagation();
   };
 
   return (
@@ -18,10 +28,10 @@ const Dropdown = () => {
         <span className="rounded-md shadow-sm">
           <button
             type="button"
+            onClick={dropdownClick}
             className="flex flex-row w-full items-center justify-between w-full rounded-md  bg-white px-4 py-2 text-sm font-medium text-gray-700 border border-primary"
-            onClick={() => setIsOpen(!isOpen)}
           >
-            {selectedItem || "Select Category"}
+            {selectedItem || p.placeholder}
             <div className="ml-4">
               {isOpen ? <FaArrowUp /> : <FaArrowDown />}
             </div>
@@ -37,10 +47,10 @@ const Dropdown = () => {
             aria-orientation="vertical"
             aria-labelledby="options-menu"
           >
-            {items.map((item, index) => (
+            {p.items.map((item, index) => (
               <button
                 key={index}
-                onClick={() => handleItemClick(item)}
+                onClick={(e) => handleItemClick(e, item)}
                 className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 role="menuitem"
               >
