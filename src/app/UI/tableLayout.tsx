@@ -12,7 +12,7 @@ export function TableLayout(props: MiComponenteProps) {
           <div className="w-2/12">
             <SearchInput placeholder="Search for a product" />
           </div>
-          <Link href={"/dashboard/products/addOne"}>
+          <Link href={"/dashboard/invoices/add"}>
             <button className="bg-primary p-1 rounded-md text-firstWhite">
               Add New
             </button>
