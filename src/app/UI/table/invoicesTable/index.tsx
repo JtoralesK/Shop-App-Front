@@ -4,7 +4,6 @@ import { Invoices, PaymentStatus } from "@/app/utilities/invoices";
 import Link from "next/link";
 import { Pagination } from "@/app/UI/pagination";
 import { Theah } from "../thead";
-import { Modal } from "../../modal";
 import { useState } from "react";
 type Props = {
   invoices: Invoices[];
