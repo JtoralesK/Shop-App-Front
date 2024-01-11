@@ -2,6 +2,7 @@
 import { MenuLink } from "../menuLink";
 import { usePathname } from "next/navigation";
 import { linksNames } from "@/app/utilities/names/dashboardLinksNames";
+import { AvatarSidebar } from "../avatarSidebar";
 export function Sidebar() {
   const pathname = usePathname();
   const linksExceptLogout = linksNames.filter(
@@ -13,7 +14,7 @@ export function Sidebar() {
   return (
     <>
       <aside className="w-3/12 h-full bg-primary rounded-r-3xl ">
-        <div className="h-full flex flex-col justify-between  py-10 ">
+        <div className="h-full flex flex-col justify-between  py-6 ">
           <div className="flex flex-col place-items-center gap-2">
             {linksExceptLogout.map((linkName) => {
               return (
