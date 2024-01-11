@@ -2,7 +2,6 @@
 import { MenuLink } from "../menuLink";
 import { usePathname } from "next/navigation";
 import { linksNames } from "@/app/utilities/names/dashboardLinksNames";
-import { AvatarSidebar } from "../avatarSidebar";
 export function Sidebar() {
   const pathname = usePathname();
   const linksExceptLogout = linksNames.filter(
