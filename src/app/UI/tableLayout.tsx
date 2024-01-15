@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ReactNode } from "react";
 type MiComponenteProps = {
   children: ReactNode;
+  addOne: string;
 };
 export function TableLayout(props: MiComponenteProps) {
   return (
@@ -12,7 +13,7 @@ export function TableLayout(props: MiComponenteProps) {
           <div className="w-2/12">
             <SearchInput placeholder="Search for a product" />
           </div>
-          <Link href={"/dashboard/invoices/add"}>
+          <Link href={props.addOne}>
             <button className="bg-primary p-1 rounded-md text-firstWhite">
               Add New
             </button>
