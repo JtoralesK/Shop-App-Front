@@ -47,7 +47,7 @@ export function TableProducts(p: Props) {
                           className="w-8 rounded-3xl"
                           width={40}
                           height={40}
-                          src={""}
+                          src={item.image}
                           alt=""
                         />
                         {item.name}
