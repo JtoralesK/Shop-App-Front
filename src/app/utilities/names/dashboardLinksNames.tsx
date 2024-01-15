@@ -18,39 +18,51 @@ type LinksNamesProfile = {
   name: string;
   key: number;
 };
+export enum Links {
+  Dashboard = "/dashboard",
+  Users = "/dashboard/users",
+  Products = "/dashboard/products",
+  Invoices = "/dashboard/invoices",
+  Reports = "/dashboard/reports",
+  AddUsers = "/dashboard/users/add",
+  AddInovices = "/dashboard/invoices/add",
+  AddProducts = "/dashboard/products/add",
+  Login = "/login",
+  Profile = "/dashboard/profile",
+}
 export const linksNames: LinksNames[] = [
-  { href: "/dashboard", name: "Workbench", icon: <FaHome />, key: 1 },
+  { href: Links.Dashboard, name: "Workbench", icon: <FaHome />, key: 1 },
   {
-    href: "/dashboard/invoices/add",
+    href: Links.AddInovices,
     name: "Add Sale",
     icon: <GiReceiveMoney />,
     key: 2,
   },
   {
-    href: "/dashboard/users",
+    href: Links.Users,
     name: "Users",
     icon: <FaUsers />,
     key: 3,
   },
 
   {
-    href: "/dashboard/products",
+    href: Links.Products,
     name: "Products",
     icon: <FaBoxOpen />,
     key: 4,
   },
   {
-    href: "/dashboard/invoices",
+    href: Links.Invoices,
     name: "Invoices",
     icon: <FaFileInvoiceDollar />,
     key: 5,
   },
-  { href: "/dashboard/reports", name: "Reports", icon: <FaMap />, key: 6 },
-  { href: "/login", name: "Logout", icon: <BiSolidLogOut />, key: 7 },
+  { href: Links.Reports, name: "Reports", icon: <FaMap />, key: 6 },
+  { href: Links.Login, name: "Logout", icon: <BiSolidLogOut />, key: 7 },
 ];
 
 export const linksNamesProfile: LinksNamesProfile[] = [
-  { href: "/dashboard/profile", name: "profile", key: 1 },
+  { href: Links.Profile, name: "profile", key: 1 },
   {
     href: "/dashboard/profile/changePassword",
     name: "Change Password",
