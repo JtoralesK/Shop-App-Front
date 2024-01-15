@@ -26,7 +26,7 @@ export function UserComponent(p: Prop) {
               width={100}
               height={100}
               alt=""
-              src={"/fotoPerfil1.png"}
+              src={obj?.profileImg ? obj.profileImg : ""}
               className="rounded-full h-full w-full bg-cover px-1"
             />
           </div>
@@ -51,26 +51,26 @@ export function UserComponent(p: Prop) {
         <form className="mt-2 w-full flex flex-row">
           <div className="w-4/12 flex flex-col gap-3">
             <LabelText
-              label="First Name"
+              text="First Name"
               placeholder={obj ? `${obj.name}` : "Undefined"}
             />
             <LabelText
-              label="Email"
+              text="Email"
               placeholder={obj ? `${obj.email}` : "Undefined"}
               type="email"
             />
             <LabelText
-              label="Bio"
+              text="Bio"
               placeholder={obj ? `${obj.bio}` : "Undefined"}
             />
           </div>
           <div className="w-4/12 flex flex-col gap-3 ml-12">
             <LabelText
-              label="Last Name"
+              text="Last Name"
               placeholder={obj ? `${obj.lastName}` : "Undefined"}
             />
             <LabelText
-              label="Phone Number"
+              text="Phone Number"
               placeholder={obj ? `${obj.phoneNumber}` : "Undefined"}
               type="text"
             />
@@ -85,21 +85,21 @@ export function UserComponent(p: Prop) {
         <form className="mt-3 w-full flex flex-row">
           <div className="w-4/12 flex flex-col gap-3">
             <LabelText
-              label="Country"
+              text="Country"
               placeholder={obj ? `${obj.country}` : "Undefined"}
             />
 
             <LabelText
-              label="Pastal Code"
+              text="Pastal Code"
               placeholder={obj ? `${obj.postalCode}` : "Undefined"}
             />
           </div>
           <div className="w-4/12 flex flex-col gap-3 ml-12">
             <LabelText
-              label="City/State"
+              text="City/State"
               placeholder={obj ? `${obj.cityState}` : "Undefined"}
             />
-            <LabelText label="Taxt ID" placeholder="AKDHW8798" type="text" />
+            <LabelText text="Taxt ID" placeholder="AKDHW8798" type="text" />
           </div>
         </form>
       </div>

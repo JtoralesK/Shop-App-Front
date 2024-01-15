@@ -3,7 +3,8 @@ import { User } from "@/app/utilities/users";
 import { TableUsers } from "@/app/UI/table/usersTable";
 import { Suspense } from "react";
 import { TableLayout } from "@/app/UI/tableLayout";
-export default async function Users({
+import { Links } from "@/app/utilities/names/dashboardLinksNames";
+async function Users({
   searchParams,
 }: {
   searchParams: {
@@ -30,10 +31,11 @@ export default async function Users({
   }
 
   return (
-    <TableLayout>
+    <TableLayout addOne={Links.AddUsers}>
       <Suspense fallback={"loading"} key={q + page}>
         <TableUsers users={users} totalPages={total} currentPage={page} />
       </Suspense>
     </TableLayout>
   );
 }
+export default Users;
