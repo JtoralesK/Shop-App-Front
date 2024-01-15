@@ -3,6 +3,7 @@ import { filteredProductsByName, getAllProducts } from "@/app/lib/data";
 import { TableProducts } from "@/app/UI/table/productsTable";
 import { Suspense } from "react";
 import { TableLayout } from "@/app/UI/tableLayout";
+import { Links } from "@/app/utilities/names/dashboardLinksNames";
 export default async function Products({
   searchParams,
 }: {
@@ -30,7 +31,7 @@ export default async function Products({
   }
 
   return (
-    <TableLayout>
+    <TableLayout addOne={Links.AddProducts}>
       <Suspense fallback={"loading"} key={q + page}>
         <TableProducts
           products={products}
