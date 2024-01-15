@@ -1,12 +1,15 @@
 "use client";
 import { useState } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { Categories } from "../utilities/products";
 type Prop = {
   items: string[];
   placeholder: string;
+  itemSelected?: string;
 };
 export const Dropdown = (p: Prop) => {
-  const [selectedItem, setSelectedItem] = useState("");
+  const itemSelected = p.itemSelected || "";
+  const [selectedItem, setSelectedItem] = useState(itemSelected);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownClick = () => {
     console.log("click");
@@ -29,7 +32,7 @@ export const Dropdown = (p: Prop) => {
           <button
             type="button"
             onClick={dropdownClick}
-            className="flex flex-row w-full items-center justify-between w-full rounded-md  bg-white px-4 py-2 text-sm font-medium text-gray-700 border border-primary"
+            className="flex flex-row w-full items-center justify-between w-full rounded-md  bg-gray-100  px-4 py-2 text-sm font-medium text-gray-700 border-2 "
           >
             {selectedItem || p.placeholder}
             <div className="ml-4">
@@ -40,7 +43,7 @@ export const Dropdown = (p: Prop) => {
       </div>
 
       {isOpen && (
-        <div className="origin-top-right absolute left-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+        <div className="h-40 overflow-auto origin-top-right absolute left-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
           <div
             className="py-1"
             role="menu"
@@ -63,5 +66,3 @@ export const Dropdown = (p: Prop) => {
     </div>
   );
 };
-
-export default Dropdown;
