@@ -1,18 +1,32 @@
-type Props = {
-  label: string;
-  placeholder: string;
+type Prop = {
+  text: string;
+  placeholder?: string;
   type?: string;
+  value?: string;
 };
-
-export function LabelText(p: Props) {
+export const LabelText = (p: Prop) => {
   return (
-    <label className="w-full">
-      <p className="text-gray-700 text-sm">{p.label}</p>
+    <DefaultLabel text={p.text}>
       <input
-        className="border w-full p-1 border-primary rounded-lg focus:border-primary focus:outline-none"
-        placeholder={p.placeholder}
+        className="w-full py-1 border-2 bg-gray-100 rounded-md p-2 "
         type={p.type}
-      ></input>
-    </label>
+        placeholder={p.value ? "" : p.placeholder}
+        value={p.value}
+      />
+    </DefaultLabel>
   );
-}
+};
+type Prop2 = {
+  text: string;
+  children: React.ReactNode;
+};
+export const DefaultLabel = (p: Prop2) => {
+  return (
+    <div className="w-full min-h-6 ">
+      <label>
+        <p className="my-1 text-gray-500 font-medium">{p.text}</p>
+        {p.children}
+      </label>
+    </div>
+  );
+};
