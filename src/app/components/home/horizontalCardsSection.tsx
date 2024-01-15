@@ -1,25 +1,25 @@
 import { HorizontalCard } from "../../UI/horizontalCard";
+import { productsArray } from "@/app/utilities/products";
 export function HorizontalCardsSection() {
+  let cont = 0;
   return (
     <>
       <div className="w-5/12 h-full ">
         <h4>Lack of stock</h4>
         <div className="mt-3 flex flex-col gap-3 h-5/6 w-full">
-          <HorizontalCard
-            title="Jean Cherry Daddy Blue Paul "
-            image="/jean.jpg"
-            stock="1/5"
-          />
-          <HorizontalCard
-            title="Girls Women High Waisted Pleated Skirt"
-            image="/skirtBlue.jpeg"
-            stock="1/5"
-          />
-          <HorizontalCard
-            title="Cotton-Jersey T-Shirt"
-            image="/tshirt.jpg"
-            stock="1/5"
-          />
+          {productsArray.map((item) => {
+            if (cont < 3) {
+              cont++;
+              return (
+                <HorizontalCard
+                  key={item.productId}
+                  title={item.name}
+                  stock={"Stock:" + item.stock}
+                  image={item.image}
+                />
+              );
+            }
+          })}
         </div>
       </div>
     </>
