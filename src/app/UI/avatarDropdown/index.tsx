@@ -3,11 +3,10 @@ import Image from "next/image";
 import { useState } from "react";
 import { usersArray } from "@/app/utilities/users";
 import { CiUser } from "react-icons/ci";
-import { IoMdSettings } from "react-icons/io";
 import { BiSolidLogOut } from "react-icons/bi";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { Links } from "@/app/utilities/names/dashboardLinksNames";
 import Link from "next/link";
-import { VscKebabVertical } from "react-icons/vsc";
 export function AvatarDropDown() {
   const [open, setOpen] = useState(false);
 
@@ -33,14 +32,14 @@ export function AvatarDropDown() {
             <ul className="">
               <li className="font-medium ">
                 <AvatarLink
-                  href=""
+                  href={Links.Profile}
                   icon={<CiUser />}
                   name="Account"
                 ></AvatarLink>
               </li>
               <li className="font-medium">
                 <AvatarLink
-                  href=""
+                  href={Links.Login}
                   icon={<BiSolidLogOut />}
                   name="Logout"
                 ></AvatarLink>
