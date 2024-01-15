@@ -3,6 +3,7 @@ import { Invoices } from "@/app/utilities/invoices";
 import { Suspense } from "react";
 import { TableInvoices } from "@/app/UI/table/invoicesTable";
 import { TableLayout } from "@/app/UI/tableLayout";
+import { Links } from "@/app/utilities/names/dashboardLinksNames";
 export default async function Invoices({
   searchParams,
 }: {
@@ -33,7 +34,7 @@ export default async function Invoices({
   }
 
   return (
-    <TableLayout>
+    <TableLayout addOne={Links.AddInovices}>
       <Suspense fallback={"loading"} key={q + page}>
         <TableInvoices
           invoices={invoices}
