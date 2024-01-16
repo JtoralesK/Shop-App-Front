@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { Invoices, PaymentStatus } from "@/app/utilities/invoices";
 import Link from "next/link";
 import { Pagination } from "@/app/UI/pagination";

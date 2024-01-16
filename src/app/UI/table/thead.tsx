@@ -6,11 +6,12 @@ type Thprops = {
 };
 type Props = {
   files: Thprops[];
+  bg?: string;
 };
 export function Theah(p: Props) {
   return (
     <>
-      <thead className="bg-primary">
+      <thead className={`${p.bg ? p.bg : "bg-primary"}`}>
         <tr>
           {p.files.map((item) => {
             return <Th key={item.id} width={item.wP} title={item.title} />;
