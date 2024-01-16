@@ -70,7 +70,7 @@ export const linksNamesProfile: LinksNamesProfile[] = [
   },
   {
     href: "/dashboard/profile/changeImageProfile",
-    name: "Change Image ",
+    name: "Change Image",
     key: 3,
   },
 ];
