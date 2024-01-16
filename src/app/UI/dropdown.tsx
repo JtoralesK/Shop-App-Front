@@ -32,7 +32,7 @@ export const Dropdown = (p: Prop) => {
           <button
             type="button"
             onClick={dropdownClick}
-            className="flex flex-row w-full items-center justify-between w-full rounded-md  bg-gray-100  px-4 py-2 text-sm font-medium text-gray-700 border-2 "
+            className=" h-9 flex flex-row w-full items-center justify-between w-full rounded-md  bg-gray-100 px-2 text-sm font-medium text-gray-700 border-2 "
           >
             {selectedItem || p.placeholder}
             <div className="ml-4">
@@ -43,7 +43,7 @@ export const Dropdown = (p: Prop) => {
       </div>
 
       {isOpen && (
-        <div className="h-40 overflow-auto origin-top-right absolute left-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+        <div className="h-37 overflow-auto origin-top-right absolute left-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
           <div
             className="py-1"
             role="menu"
