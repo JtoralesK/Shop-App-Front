@@ -1,4 +1,4 @@
-import { UserComponent } from "@/app/components/user";
+import { UserComponent } from "@/app/components/addViewUser";
 export default function Profile() {
   return (
     <>
