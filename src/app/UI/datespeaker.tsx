@@ -1,7 +1,9 @@
+"use client";
 import { DefaultLabel } from "./labelText";
 type PickerProp = {
   text: string;
   value?: string;
+  onchange?: (value: string) => void;
 };
 
 export const DatePickerLabel = (p: PickerProp) => {
@@ -13,6 +15,7 @@ export const DatePickerLabel = (p: PickerProp) => {
         id="start"
         min="2023-01-01"
         max="2025-12-31"
+        onChange={(e) => p.onchange && p.onchange(e.target.value)}
         value={p.value ? p.value : new Date().toISOString().slice(0, 10)}
       />
     </DefaultLabel>
