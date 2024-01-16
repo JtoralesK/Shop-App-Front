@@ -1,17 +1,20 @@
+"use client";
 type Prop = {
   text: string;
   placeholder?: string;
-  type?: string;
+  type?: string | "text";
   value?: string;
+  onChange?: (value: string) => void;
 };
 export const LabelText = (p: Prop) => {
   return (
     <DefaultLabel text={p.text}>
       <input
-        className="w-full py-1 border-2 bg-gray-100 rounded-md p-2 "
+        className="w-full h-9 border-2 bg-gray-100 rounded-md px-2 "
         type={p.type}
-        placeholder={p.value ? "" : p.placeholder}
+        placeholder={p.placeholder}
         value={p.value}
+        onChange={(e) => p.onChange && p.onChange(e.target.value)}
       />
     </DefaultLabel>
   );
