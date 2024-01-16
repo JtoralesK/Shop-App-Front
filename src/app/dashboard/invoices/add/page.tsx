@@ -7,9 +7,12 @@ import { Dropdown } from "@/app/UI/dropdown";
 import { DatePickerLabel } from "@/app/UI/datespeaker";
 import { DefaultLabel } from "@/app/UI/labelText";
 import { LabelText } from "@/app/UI/labelText";
+import { InvoiceArrayItem } from "./addProducts";
 export default function AddInvoice() {
   const dropdownItems = ["Cash", "Credit Card", "Debit Card", "Paypal"];
   const [showAddProducts, setShowAddProducts] = useState(false);
+  const [products, setProducts] = useState<InvoiceArrayItem[]>([]);
+  console.log(products, 2);
   const changeSection = () => {
     setShowAddProducts(!showAddProducts);
   };
@@ -54,11 +57,16 @@ export default function AddInvoice() {
               </div>
             </div>
           ) : (
-            <AddProducts onClick={changeSection} />
+            <AddProducts
+              onClick={changeSection}
+              addProduct={(e) => {
+                setProducts(e);
+              }}
+            />
           )}
 
           <div className="w-5/12">
-            <InvoiceCard />
+            <InvoiceCard products={products} />
             <div className="w-full h-[10%] "></div>
           </div>
         </div>

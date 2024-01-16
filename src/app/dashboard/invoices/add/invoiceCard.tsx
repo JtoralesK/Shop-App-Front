@@ -1,6 +1,11 @@
-import { productsArray } from "@/app/utilities/products";
-export function InvoiceCard() {
+import { InvoiceArrayItem } from "./addProducts";
+type Props = {
+  products: InvoiceArrayItem[];
+};
+
+export function InvoiceCard(p: Props) {
   let cont = 0;
+  let total = 0;
   return (
     <>
       <div className={`w-full h-[90%] bg-firstWhite`}>
@@ -24,15 +29,19 @@ export function InvoiceCard() {
                 </tr>
               </thead>
               <tbody className="text-xs">
-                {productsArray.map((item) => {
+                {p.products.map((item) => {
+                  const { amount, newProductToBuy } = item;
                   if (cont < 7) {
+                    total += newProductToBuy.price * amount;
                     cont++;
                     return (
-                      <tr key={item.productId}>
-                        <td className="">Product 1</td>
-                        <td className="text-center">100</td>
-                        <td className="text-center">100</td>
-                        <td className="text-center">10000</td>
+                      <tr key={newProductToBuy.productId}>
+                        <td className="">{newProductToBuy.name}</td>
+                        <td className="text-center">{newProductToBuy.price}</td>
+                        <td className="text-center">{amount}</td>
+                        <td className="text-center">
+                          {newProductToBuy.price * amount}
+                        </td>
                       </tr>
                     );
                   }
@@ -51,7 +60,7 @@ export function InvoiceCard() {
             <div className="flex flex-row justify-between  h-10 border-y items-center">
               <div className="">Bill</div>
               <div>9 Jen 2024</div>
-              <div>$3240</div>
+              {total.toFixed(2)}
             </div>
           </div>
         </div>
