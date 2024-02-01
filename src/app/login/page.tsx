@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { authenticate } from "../lib/actions";
 export default function Login() {
   return (
     <>
@@ -32,17 +33,19 @@ export default function Login() {
               </div>
               <div className="flex justify-center">
                 <div className=" flex flex-col h-4/6 w-6/12 pt-24">
-                  <form className="flex flex-col gap-6 ">
+                  <form action={authenticate} className="flex flex-col gap-6 ">
                     <h2 className="text-3xl text-forth font-medium ">
                       Sign in to prufer
                     </h2>
                     <input
                       className="p-2 bg-secondary rounded-md"
                       placeholder="Email"
+                      name="email"
                     ></input>
                     <input
                       className="p-2 bg-secondary rounded-md"
                       placeholder="Password"
+                      name="password"
                     ></input>
                     <button className="bg-primary w-full p-2 font-bold rounded-md text-firstWhite mt-6">
                       Sign up
