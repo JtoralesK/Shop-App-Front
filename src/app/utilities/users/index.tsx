@@ -1,4 +1,28 @@
+export interface AllUserResponse {
+  totalItems: number;
+  totalPages: number;
+  currentPage: number;
+  content: User[];
+}
+
 export type User = {
+  id: number;
+  name: string;
+  email: string;
+  bio: string;
+  lastName: string;
+  phoneNumber: string;
+  country: string;
+  postalCode: string;
+  city: string;
+  active: boolean;
+  gender: Gender;
+  role: Role;
+  createdAt: string;
+  profileImgUrl: string;
+};
+
+export type FalseUser = {
   name: string;
   email: string;
   bio: string;
@@ -13,8 +37,15 @@ export type User = {
   createdAt: string;
   profileImg: string;
 };
-
-export const usersArray: User[] = [
+export type Gender = {
+  id: number;
+  genderType: string;
+};
+export type Role = {
+  id: number;
+  roleType: string;
+};
+export const usersArray: FalseUser[] = [
   {
     name: "John",
     email: "john@example.com",

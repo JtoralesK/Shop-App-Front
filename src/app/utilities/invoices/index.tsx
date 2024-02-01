@@ -1,14 +1,14 @@
 export type PaymentMethod = "Cash" | "Credit Card" | "Debit Card" | "Paypal";
 export type PaymentStatus = "Paid" | "Unpaid" | "Pending";
 
-import { User } from "../users";
+import { FalseUser } from "../users";
 import { usersArray } from "../users";
 export type Invoices = {
   invoiceId: number;
   date: string;
   total: number;
   customer: string;
-  generatedBy: User;
+  generatedBy: FalseUser;
   totalProducts: number;
   status: boolean;
   paymentMethod: PaymentMethod;
