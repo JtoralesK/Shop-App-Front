@@ -17,13 +17,21 @@ type Props = {
 export function TableProducts(p: Props) {
   const [isOpen, setOpen] = useState(false);
   const [id, setId] = useState(0);
+  const [state, setState] = useState(false);
+
   const deleteItem = (id: number) => {
     setOpen(!isOpen);
     setId(id);
   };
   return (
     <>
-      <Modal category="product" isOpen={isOpen} setOpen={setOpen} itemId={id} />
+      <Modal
+        category="product"
+        isOpen={isOpen}
+        closeModal={setOpen}
+        itemId={id}
+        itemState={state}
+      />
       <div className="overflow-hidden rounded-lg ">
         <table className="w-full">
           <Theah
