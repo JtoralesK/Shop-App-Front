@@ -6,7 +6,7 @@ import { PersonalInformation } from "./personalInformation";
 import { Adress } from "./adress";
 
 type Prop = {
-  user: User;
+  user?: User;
 };
 
 export function UserComponent(p: Prop) {
