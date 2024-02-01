@@ -1,10 +1,10 @@
+"use client";
 import { LabelText } from "@/app/UI/labelText";
-import { EditButton } from "@/app/UI/editButton";
 import { Dropdown } from "@/app/UI/dropdown";
 import { DefaultLabel } from "@/app/UI/labelText";
 import { PropSection } from "./index";
 export const PersonalInformation = (p: PropSection) => {
-  const items = ["Male", "Female", "Non-Binary", "Other"];
+  const items = ["Male", "Female", "Other"];
   const { obj } = p;
   return (
     <div className="h-2/6 px-2">
@@ -38,7 +38,11 @@ export const PersonalInformation = (p: PropSection) => {
             type="text"
           />
           <DefaultLabel text="Choose Sex">
-            <Dropdown items={items} placeholder="Genre" />
+            <Dropdown
+              items={items}
+              placeholder="Genre"
+              itemSelected={obj ? obj.gender.genderType : undefined}
+            />
           </DefaultLabel>
         </div>
       </form>

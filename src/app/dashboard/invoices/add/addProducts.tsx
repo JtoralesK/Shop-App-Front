@@ -37,6 +37,8 @@ export function AddProducts(props: Prop) {
     const newProductToBuy = productsArray.find((item) => item.productId === id);
     if (newProductToBuy) {
       if (notExist(newProductToBuy.productId)) {
+        newProductToBuy.stock -= amount;
+
         const obj = {
           newProductToBuy,
           amount,

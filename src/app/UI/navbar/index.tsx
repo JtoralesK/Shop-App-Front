@@ -1,12 +1,15 @@
-import { IoIosSettings } from "react-icons/io";
-import { CgProfile } from "react-icons/cg";
-import Link from "next/link";
 import { AvatarDropDown } from "../avatarDropdown";
-export function Navbar() {
+import { auth } from "../../auth";
+export async function Navbar() {
+  const session: any = await auth();
   return (
     <div className="py-2 w-full  flex flex-row justify-end ">
       <div>
-        <AvatarDropDown />
+        <AvatarDropDown
+          imgUrl={session?.user.user.profileImgUrl}
+          name=""
+          email=""
+        />
       </div>
     </div>
   );

@@ -1,7 +1,9 @@
+"use client";
 import Image from "next/image";
 import { PropSection } from "./index";
 export const FirstSection = (p: PropSection) => {
   const { obj } = p;
+  console.log(obj?.profileImgUrl ? true : false);
   return (
     <>
       <div className="h-1/6  flex flex-row w-full px-2 items-center">
@@ -10,7 +12,7 @@ export const FirstSection = (p: PropSection) => {
             width={100}
             height={100}
             alt=""
-            src={obj?.profileImg ? obj.profileImg : ""}
+            src={obj?.profileImgUrl ? obj.profileImgUrl : "/unknown.png"}
             className="rounded-full h-full w-full bg-cover px-1"
           />
         </div>
@@ -21,7 +23,7 @@ export const FirstSection = (p: PropSection) => {
             </p>
             <p className="text-sm text-gray-700">{obj?.bio}</p>
             <p className="text-xs text-gray-700">
-              {obj?.cityState} {obj?.country}
+              {obj?.city} {obj?.city}
             </p>
           </div>
         </div>

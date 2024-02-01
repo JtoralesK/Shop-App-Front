@@ -1,11 +1,14 @@
 import Image from "next/image";
 import { MiniCardsSection } from "./minicardsSection";
 import { HorizontalCardsSection } from "./horizontalCardsSection";
-export function HomeSection() {
+import { auth } from "../../auth";
+export async function HomeSection() {
+  const session: any = await auth();
+
   return (
     <>
       <div className="flex gap-1 flex-col">
-        <h1 className="text-3xl font-bold">Hello! Adam</h1>
+        <h1 className="text-3xl font-bold">Hello! {session.user.user.name}</h1>
         <p className="text-md">
           Never put off till tomorrow what can be done today!
         </p>
@@ -48,7 +51,7 @@ export function HomeSection() {
               </div>
               <Image
                 className="rounded-lg w-1-3 flex justify-end shadow"
-                src="/zapatillas.png"
+                src="/products/zapatillas.png"
                 width={200}
                 height={200}
                 alt="Picture of the author"

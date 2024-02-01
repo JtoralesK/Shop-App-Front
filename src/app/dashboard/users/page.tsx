@@ -4,6 +4,7 @@ import { TableUsers } from "@/app/UI/table/usersTable";
 import { Suspense } from "react";
 import { TableLayout } from "@/app/UI/tableLayout";
 import { Links } from "@/app/utilities/names/dashboardLinksNames";
+import { auth } from "@/app/auth";
 async function Users({
   searchParams,
 }: {
@@ -12,28 +13,30 @@ async function Users({
     page?: string;
   };
 }) {
-  let users = [] as User[];
   const q = searchParams?.q || "";
   const page = Number(searchParams?.page) || 1;
-  let total = 1;
-  try {
-    if (q) {
-      let { userArray, totalPages } = await filteredUsersByName(q, page);
-      users = userArray;
-      total = totalPages;
-    } else {
-      let { userArray, totalPages } = await getAllUsers(page);
-      users = userArray;
-      total = totalPages;
-    }
-  } catch (e) {
-    console.log(e);
+  const seccion: any = await auth();
+  const token = seccion.user.user.token;
+  let result;
+  if (q) {
+    result = await filteredUsersByName(q, page);
+  } else {
+    result = await getAllUsers(page, token);
   }
+  const { totalPages, content } = result;
+
+  const users = content as User[];
+  const total = totalPages;
 
   return (
     <TableLayout addOne={Links.AddUsers}>
       <Suspense fallback={"loading"} key={q + page}>
-        <TableUsers users={users} totalPages={total} currentPage={page} />
+        <TableUsers
+          users={users}
+          totalPages={total}
+          currentPage={page}
+          token={token}
+        />
       </Suspense>
     </TableLayout>
   );

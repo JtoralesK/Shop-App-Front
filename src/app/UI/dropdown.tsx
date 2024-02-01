@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
-import { Categories } from "../utilities/products";
 type Prop = {
   items: string[];
   placeholder: string;
@@ -12,7 +11,6 @@ export const Dropdown = (p: Prop) => {
   const [selectedItem, setSelectedItem] = useState(itemSelected);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownClick = () => {
-    console.log("click");
     setIsOpen(!isOpen);
   };
   const handleItemClick = (

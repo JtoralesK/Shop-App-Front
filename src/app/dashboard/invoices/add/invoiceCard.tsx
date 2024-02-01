@@ -31,7 +31,7 @@ export function InvoiceCard(p: Props) {
               <tbody className="text-xs">
                 {p.products.map((item) => {
                   const { amount, newProductToBuy } = item;
-                  if (cont < 7) {
+                  if (cont < 10) {
                     total += newProductToBuy.price * amount;
                     cont++;
                     return (

@@ -1,7 +1,9 @@
+"use client";
 import { LabelText } from "@/app/UI/labelText";
 import { PropSection } from "./index";
 export const Adress = (p: PropSection) => {
   const { obj } = p;
+  console.log(obj?.country, obj?.city);
   return (
     <div className="h-1/6 px-2">
       <div className="flex flex-row justify-between items-center">
@@ -20,7 +22,7 @@ export const Adress = (p: PropSection) => {
           />
           <LabelText
             text="City/State"
-            placeholder={obj ? `${obj.cityState}` : "Undefined"}
+            placeholder={obj ? `${obj.city}` : "Undefined"}
           />
         </div>
       </form>
