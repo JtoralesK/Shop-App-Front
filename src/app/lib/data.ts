@@ -1,36 +1,44 @@
-import { usersArray } from "../utilities/users";
 import { productsArray } from "../utilities/products";
 import { Invoices, invoicesArray } from "../utilities/invoices";
+import { auth } from "@/app/auth";
+
 export const filteredUsersByName = async (q: any, page: number) => {
-  const limit = 5;
-  const offset = (page - 1) * limit;
-  const filteredUsers = usersArray.filter((user) =>
-    user.name.toLowerCase().startsWith(q.toLowerCase())
-  );
-  const obj = {
-    totalPages: Math.ceil(filteredUsers.length / 5),
-    userArray: filteredUsers
-      .slice(offset, offset + limit)
-      .filter((user) => user.name.toLowerCase().startsWith(q.toLowerCase())),
-  };
-  return fetch("https://pokeapi.co/api/v2/pokemon-form/132/")
-    .then((response) => response.json())
-    .then((json) => {
-      return obj;
-    });
+  const url = "users/all/filter?searchTerm=" + q + "&offset=" + (page - 1);
+  const response = fetchApi({
+    dataFetch: { url, method: "GET", offset: page },
+  });
+  return response;
 };
-export const getAllUsers = async (page: number) => {
-  const limit = 5;
-  const offset = (page - 1) * limit;
-  const obj = {
-    totalPages: Math.ceil(usersArray.length / 5),
-    userArray: usersArray.slice(offset, offset + limit),
-  };
-  return fetch("https://pokeapi.co/api/v2/pokemon-form/132/")
-    .then((response) => response.json())
-    .then((json) => {
-      return obj;
-    });
+
+export const getOneUser = async (id: number, token: string) => {
+  const response = await fetch(`http://localhost:4000/users/${id}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.json();
+};
+
+export const getAllUsers = async (page: number, token: string) => {
+  const response = fetchApi({
+    dataFetch: {
+      url: "users/all?offset=" + (page - 1),
+      method: "GET",
+      offset: page,
+      token,
+    },
+  });
+  return response;
+};
+export const changeUserState = async (id: number) => {
+  const response = fetchApi({
+    dataFetch: {
+      url: "users/" + id,
+      method: "DELETE",
+    },
+  });
+  return response;
 };
 
 //products
@@ -100,4 +108,29 @@ export const getAllInvoices = async (page: number) => {
     .then((json) => {
       return obj;
     });
+};
+
+const fetchApi = async ({ dataFetch }: any) => {
+  const { url, method, body } = dataFetch;
+  const seccion: any = await auth();
+  const token = seccion.user.token;
+  let data: any = {};
+  const urlFetch = `http://localhost:4000/${url}`;
+  try {
+    const response = await fetch(urlFetch, {
+      method: method,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      cache: "no-cache",
+    });
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status} - ${response.statusText}`);
+    }
+    data = await response.json();
+  } catch (error: any) {
+    console.error("Error al realizar la solicitud:", error.message);
+  } finally {
+    return data;
+  }
 };
