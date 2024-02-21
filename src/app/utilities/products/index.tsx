@@ -4,152 +4,50 @@ export interface Product {
   price: number;
   stock: number;
   image: string;
-  category: Categories;
-  Gender: Gender;
+  productCategory: Category;
+  gender: Gender;
   createdAt: string;
   active: boolean;
-  productId: number;
+  id: number;
 }
-export enum Categories {
-  Jacket,
-  Jean,
-  Raincoat,
-  Leggins,
-  Sweatshirt,
-  TShirt,
-  Shirt,
-  Shorts,
-  Dress,
-  Sneakers,
-  Boots,
-  Skirts,
+interface Category {
+  id: number;
+  productCategory: string;
 }
-export enum Gender {
-  Male,
-  Female,
-  Unspeacified,
-  NonBinary,
+interface Gender {
+  id: number;
+  genderType: string;
 }
-
-export const productsArray: Product[] = [
-  {
-    name: "White shirt",
-    description: "White whirt", // varchar[30]
-    price: 15.99,
-    stock: 50,
-    image: "/products/whiteShirt1.webp",
-    category: Categories.Shirt,
-    Gender: Gender.Male,
-    createdAt: "2023-05-10",
-    active: true,
-    productId: 1,
-  },
-  {
-    name: "Leather jacket",
-    description: "Black leather jacket men",
-    price: 129.99,
-    stock: 15,
-    image: "/products/leatherJacketMen.jpg",
-    category: Categories.Jacket,
-    Gender: Gender.Male,
-    createdAt: "2023-08-15",
-    active: true,
-    productId: 2,
-  },
-  {
-    name: "Flowers Dress",
-    description: "flowers dress",
-    price: 59.95,
-    stock: 25,
-    image: "/products/flowersDress.webp",
-    category: Categories.Dress,
-    Gender: Gender.Female,
-    createdAt: "2023-06-20",
-    active: true,
-    productId: 3,
-  },
-  {
-    name: "Sneakers White",
-    description: "Sneakers White",
-    price: 149.99,
-    stock: 30,
-    image: "/products/sneakersWhite.webp",
-    category: Categories.Sneakers,
-    Gender: Gender.Unspeacified,
-    createdAt: "2023-04-05",
-    active: true,
-    productId: 4,
-  },
-  {
-    name: "Blue Jean Woman",
-    description: "Blue Jean Woman",
-    price: 39.99,
-    stock: 40,
-    image: "/products/blueJeansWoman1.jpg",
-    category: Categories.Jean,
-    Gender: Gender.Female,
-    createdAt: "2023-09-10",
-    active: true,
-    productId: 5,
-  },
-  {
-    name: "Striped Shirt",
-    description: "Striped Shirt",
-    price: 45.5,
-    stock: 20,
-    image: "/products/stripedShirt.jpg",
-    category: Categories.Shirt,
-    Gender: Gender.NonBinary,
-    createdAt: "2023-07-18",
-    active: true,
-    productId: 6,
-  },
-  {
-    name: "Sweatshirt men",
-    description: "Sweatshirt men",
-    price: 34.99,
-    stock: 30,
-    image: "/products/sweatShirtMen1.jpg",
-    category: Categories.Sweatshirt,
-    Gender: Gender.Male,
-    createdAt: "2023-11-25",
-    active: true,
-    productId: 7,
-  },
-  {
-    name: "Hiking Boots",
-    description: "Hiking boots",
-    price: 89.95,
-    stock: 15,
-    image: "/products/hikingBoots1.jpg",
-    category: Categories.Boots,
-    Gender: Gender.Unspeacified,
-    createdAt: "2023-10-02",
-    active: true,
-    productId: 8,
-  },
-  {
-    name: "Black Skirt",
-    description: "Black skirt",
-    price: 55.0,
-    stock: 25,
-    image: "/products/blackSkirt1.jpg",
-    category: Categories.Skirts,
-    Gender: Gender.NonBinary,
-    createdAt: "2023-12-10",
-    active: true,
-    productId: 9,
-  },
-  {
-    name: "Converse ",
-    description: "Converse Chuck Taylor All Star",
-    price: 59.99,
-    stock: 35,
-    image: "/products/converse1.jpg",
-    category: Categories.Sneakers,
-    Gender: Gender.Unspeacified,
-    createdAt: "2023-09-28",
-    active: true,
-    productId: 10,
-  },
+export const Categories = [
+  "TShirt",
+  "Pants",
+  "Dress",
+  "Jacket",
+  "Footwear",
+  "Underwear",
+  "Sportswear",
+  "FashionAccessories",
+  "Sleepwear",
+  "Swimwear",
+  "Hoddie",
 ];
+const defaultGender = {
+  id: 1,
+  genderType: "",
+};
+const defaultCategory = {
+  id: 1,
+  productCategory: "",
+};
+export const defaultProduct: Product = {
+  name: "Iphone x",
+  description: "string",
+  price: 1000,
+  stock: 1,
+  image: "string",
+  productCategory: defaultCategory,
+  gender: defaultGender,
+  createdAt: "21-2-2024",
+  active: true,
+  id: 1,
+};
