@@ -8,6 +8,7 @@ type Props = {
 };
 export default async function Layout(p: Props) {
   const session: any = await auth();
+
   return (
     <div className={inter.className}>
       <section className="w-screen h-screen bg-secondary flex flex-row ">

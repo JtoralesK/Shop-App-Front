@@ -1,7 +1,6 @@
-"use client";
 import { UserComponent } from "@/app/components/addViewUser";
-import { usePathname } from "next/navigation";
+import { defaultUser } from "@/app/utilities/users";
+
 export default function Add() {
-  const pathname = usePathname();
-  return <UserComponent />;
+  return <UserComponent user={defaultUser} />;
 }

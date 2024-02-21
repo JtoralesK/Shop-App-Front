@@ -18,7 +18,6 @@ export const authConfig = {
       } else {
         return false;
       }
-      return true;
     },
   },
 };

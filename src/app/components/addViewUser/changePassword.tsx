@@ -1,4 +1,3 @@
-"use client";
 import { LabelText } from "@/app/UI/labelText";
 import { PropSection } from "./index";
 export const ChangePassword = (p: PropSection) => {

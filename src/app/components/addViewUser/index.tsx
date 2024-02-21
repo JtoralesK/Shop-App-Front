@@ -1,16 +1,15 @@
-"use client";
 import { User } from "@/app/utilities/users";
 import { FirstSection } from "./firstSection";
 import { ChangePassword } from "./changePassword";
 import { PersonalInformation } from "./personalInformation";
 import { Adress } from "./adress";
-
 type Prop = {
-  user?: User;
+  user: User;
 };
 
 export function UserComponent(p: Prop) {
-  const user = p.user;
+  const user: User = p.user;
+
   return (
     <>
       <div className="flex justify-center">
@@ -31,5 +30,5 @@ export function UserComponent(p: Prop) {
 }
 
 export type PropSection = {
-  obj: User | undefined;
+  obj: User;
 };

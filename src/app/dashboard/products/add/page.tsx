@@ -1,10 +1,9 @@
 import { ProductComponent } from "@/app/components/product";
-export default function AddProduct({ params }: any) {
-  const id = parseInt(params.productId, 10);
-
+import { defaultProduct } from "@/app/utilities/products";
+export default function AddProduct() {
   return (
     <>
-      <ProductComponent typeComponent="add" productId={id} />
+      <ProductComponent typeComponent="add" item={defaultProduct} />
     </>
   );
 }

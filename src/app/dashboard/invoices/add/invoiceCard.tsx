@@ -1,11 +1,18 @@
 import { InvoiceArrayItem } from "./addProducts";
 type Props = {
   products: InvoiceArrayItem[];
+  costumer: string;
 };
 
 export function InvoiceCard(p: Props) {
   let cont = 0;
   let total = 0;
+  const fecha = new Date();
+
+  // Obtener el día, mes y año de la fecha
+  const dia = fecha.getDate().toString().padStart(2, "0"); // Agregar un cero inicial si el día es menor que 10
+  const mes = (fecha.getMonth() + 1).toString().padStart(2, "0"); // Agregar un cero inicial si el mes es menor que 10
+  const año = fecha.getFullYear();
   return (
     <>
       <div className={`w-full h-[90%] bg-firstWhite`}>
@@ -15,8 +22,8 @@ export function InvoiceCard(p: Props) {
             <p className="text-xs">Invoice No: F-03950285</p>
           </div>
           <div className=" h-20">
-            <p className="text-sm">Client</p>
-            <p className="text-xs">John Doe</p>
+            <p className="text-sm">Costumer</p>
+            <p className="text-xs">{p.costumer}</p>
           </div>
           <div className=" min-h-20">
             <table className="w-full">
@@ -35,7 +42,7 @@ export function InvoiceCard(p: Props) {
                     total += newProductToBuy.price * amount;
                     cont++;
                     return (
-                      <tr key={newProductToBuy.productId}>
+                      <tr key={newProductToBuy.id}>
                         <td className="">{newProductToBuy.name}</td>
                         <td className="text-center">{newProductToBuy.price}</td>
                         <td className="text-center">{amount}</td>
@@ -59,7 +66,7 @@ export function InvoiceCard(p: Props) {
             </div>
             <div className="flex flex-row justify-between  h-10 border-y items-center">
               <div className="">Bill</div>
-              <div>9 Jen 2024</div>
+              <div>{`${dia}/${mes}/${año}`}</div>
               {total.toFixed(2)}
             </div>
           </div>

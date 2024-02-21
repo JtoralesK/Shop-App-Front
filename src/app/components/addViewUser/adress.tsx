@@ -1,9 +1,7 @@
-"use client";
 import { LabelText } from "@/app/UI/labelText";
 import { PropSection } from "./index";
 export const Adress = (p: PropSection) => {
   const { obj } = p;
-  console.log(obj?.country, obj?.city);
   return (
     <div className="h-1/6 px-2">
       <div className="flex flex-row justify-between items-center">
@@ -11,19 +9,10 @@ export const Adress = (p: PropSection) => {
       </div>
       <form className="w-full flex flex-col gap-3">
         <div className=" flex flex-row gap-4">
-          <LabelText
-            text="Country"
-            placeholder={obj ? `${obj.country}` : "Undefined"}
-          />
+          <LabelText text="Country" placeholder={obj.country} />
 
-          <LabelText
-            text="Pastal Code"
-            placeholder={obj ? `${obj.postalCode}` : "Undefined"}
-          />
-          <LabelText
-            text="City/State"
-            placeholder={obj ? `${obj.city}` : "Undefined"}
-          />
+          <LabelText text="Pastal Code" placeholder={obj.postalCode} />
+          <LabelText text="City/State" placeholder={obj.city} />
         </div>
       </form>
     </div>

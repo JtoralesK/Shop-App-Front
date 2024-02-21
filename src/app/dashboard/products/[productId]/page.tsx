@@ -1,10 +1,11 @@
+"use client";
+import { productViewStore } from "@/app/store/viewProductContext";
 import { ProductComponent } from "@/app/components/product";
-export default function ProductId({ params }: any) {
-  const id = parseInt(params.productId, 10);
-
+export default function ProductId() {
+  const { product } = productViewStore();
   return (
     <>
-      <ProductComponent typeComponent="view" productId={id} />
+      <ProductComponent item={product} typeComponent="view" />
     </>
   );
 }

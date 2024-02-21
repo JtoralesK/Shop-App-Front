@@ -1,16 +1,19 @@
-import { deleteUserAction } from "@/app/lib/actions";
+"use client";
+import { deleteUserAction, deleteProductAction } from "@/app/lib/actions";
 import { IoMdClose } from "react-icons/io";
+import { SubmitButton } from "./button";
+import { useState } from "react";
+import { MiniLoading } from "./miniSpinner";
 type Props = {
-  category: string;
+  category: "user" | "product";
   isOpen: boolean;
   itemId: number;
-  closeModal: (open: false) => void;
+  closeModal: (open: boolean) => void;
   itemState: boolean;
+  action: (FormData: FormData) => Promise<never>;
 };
 export function Modal(p: Props) {
-  const change = () => {
-    p.closeModal(false);
-  };
+  const [state, setState] = useState(false);
   return (
     <>
       <div
@@ -20,10 +23,10 @@ export function Modal(p: Props) {
             : ""
         }
       >
-        <dialog className="rounded-lg mt-40" open={p.isOpen}>
+        <dialog className="rounded-lg mt-40 " open={p.isOpen}>
           <form
-            action={deleteUserAction}
-            className="border p-3 p-3 bg-secondary rounded-lg "
+            action={p.action}
+            className="border p-3 p-3 bg-secondary rounded-lg  "
           >
             <div className="flex flex-row justify-end">
               <button type="button" onClick={() => p.closeModal(false)}>
@@ -43,19 +46,21 @@ export function Modal(p: Props) {
                 <p className="text-gray-700">Are you sure?</p>
               </div>
             </div>
-            <div className="flex flex-row justify-end gap-3">
-              <button type="button" onClick={() => p.closeModal(false)}>
-                Cancel
-              </button>
-              <input type="hidden" name="id" value={p.itemId} />
-              <button
-                onClick={() => p.closeModal(false)}
-                className={` ${
-                  p.itemState ? "bg-red-400 " : "bg-green-400"
-                } p-2 h-10 rounded-lg `}
-              >
-                {p.itemState ? "Delete" : "Active"}
-              </button>
+            <div className="flex flex-row justify-between w-full items-center">
+              <div className="w-1/3">{state ? <MiniLoading /> : ""}</div>
+              <div className="flex flex-row justify-end gap-3">
+                <button type="button" onClick={() => p.closeModal(false)}>
+                  Cancel
+                </button>
+                <input type="hidden" name="id" value={p.itemId} />
+                <SubmitButton
+                  itemState={p.itemState}
+                  closeModal={p.closeModal}
+                  loadingSubmit={(state) => {
+                    setState(state);
+                  }}
+                />
+              </div>
             </div>
           </form>
         </dialog>

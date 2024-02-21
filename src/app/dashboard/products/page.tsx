@@ -4,6 +4,7 @@ import { TableProducts } from "@/app/UI/table/productsTable";
 import { Suspense } from "react";
 import { TableLayout } from "@/app/UI/tableLayout";
 import { Links } from "@/app/utilities/names/dashboardLinksNames";
+
 export default async function Products({
   searchParams,
 }: {
@@ -12,24 +13,18 @@ export default async function Products({
     page?: string;
   };
 }) {
-  let products = [] as Product[];
   const q = searchParams?.q || "";
   const page = Number(searchParams?.page) || 1;
-  let total = 1;
-  try {
-    if (q) {
-      let { productsArray, totalPages } = await filteredProductsByName(q, page);
-      products = productsArray;
-      total = totalPages;
-    } else {
-      let { productsArray, totalPages } = await getAllProducts(page);
-      products = productsArray;
-      total = totalPages;
-    }
-  } catch (e) {
-    console.log(e);
-  }
+  let result;
 
+  if (q) {
+    result = await filteredProductsByName(q, page);
+  } else {
+    result = await getAllProducts(page);
+  }
+  const { totalPages, content } = result;
+  const products = content as Product[];
+  const total = totalPages;
   return (
     <TableLayout addOne={Links.AddProducts}>
       <Suspense fallback={"loading"} key={q + page}>

@@ -26,7 +26,7 @@ export async function HomeSection() {
               <Image
                 width={120}
                 height={120}
-                alt=""
+                alt="woman"
                 src={"/standWoman1.png"}
               ></Image>
             </div>

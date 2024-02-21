@@ -46,6 +46,7 @@ export default function Login() {
                       className="p-2 bg-secondary rounded-md"
                       placeholder="Password"
                       name="password"
+                      type="password"
                     ></input>
                     <button className="bg-primary w-full p-2 font-bold rounded-md text-firstWhite mt-6">
                       Sign up

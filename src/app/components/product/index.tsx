@@ -1,21 +1,13 @@
-import { Product } from "@/app/utilities/products";
-import { productsArray } from "@/app/utilities/products";
 import { AddProductform } from "./form";
 import Image from "next/image";
+import { Product } from "@/app/utilities/products";
 type ProductComponent = "add" | "edit" | "view";
 type Prop = {
-  productId: number;
+  item: Product;
   typeComponent: ProductComponent;
 };
 export function ProductComponent(p: Prop) {
-  let obj: Product | {};
-  const foundProduct = productsArray.find(
-    (item) => item.productId === p.productId
-  );
-  console.log(foundProduct);
-  if (foundProduct) {
-    obj = foundProduct;
-  }
+  console.log(p.item, "here");
   return (
     <div className="flex justify-center">
       <div
@@ -25,7 +17,7 @@ export function ProductComponent(p: Prop) {
           <div className="text-center">
             <p className={`text-md font-medium`}>
               {p.typeComponent === "view"
-                ? "Product Id:" + foundProduct?.productId
+                ? "Product Id:" + p.item?.id
                 : "Add new product"}
             </p>
             <p className="font-bold text-lg ">General Information</p>
@@ -39,14 +31,11 @@ export function ProductComponent(p: Prop) {
                 height={500}
                 className="w-full h-full bg-cover "
                 alt=""
-                src={foundProduct ? foundProduct.image : "/drop.png"}
+                src={p.item.image}
               ></Image>
             </div>
           </div>
-          <AddProductform
-            productId={p.productId}
-            typeComponent={p.typeComponent}
-          />
+          <AddProductform product={p.item} typeComponent={p.typeComponent} />
         </div>
       </div>
     </div>

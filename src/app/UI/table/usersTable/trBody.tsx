@@ -2,7 +2,7 @@ import Link from "next/link";
 import { User } from "@/app/utilities/users";
 import Image from "next/image";
 import { userViewStore } from "@/app/store/ViewUserContext";
-import { ChangeStateUserButton } from "./changeStateUserButton";
+import { ChangeEntityStateButton } from "../../changeEntityStateButton";
 type PropTr = {
   item: User;
   deleteItem: (id: number, state: boolean) => void;
@@ -43,11 +43,12 @@ export function TrBody(p: PropTr) {
                 View
               </button>
             </Link>
-            <ChangeStateUserButton
+            <ChangeEntityStateButton
               deleteItem={(id) => {
                 deleteItem(id, item.active);
               }}
-              item={item}
+              id={item.id}
+              active={item.active}
             />
           </div>
         </div>

@@ -1,8 +1,7 @@
 "use client";
-
-import Image from "next/image";
+import { deleteProductAction } from "@/app/lib/actions";
+import { TrBody } from "./trBody";
 import { Product } from "@/app/utilities/products";
-import Link from "next/link";
 import { Pagination } from "@/app/UI/pagination";
 import { Theah } from "../thead";
 import { Modal } from "../../modal";
@@ -17,11 +16,12 @@ type Props = {
 export function TableProducts(p: Props) {
   const [isOpen, setOpen] = useState(false);
   const [id, setId] = useState(0);
-  const [state, setState] = useState(false);
+  const [stateModal, setStateModal] = useState(false);
 
-  const deleteItem = (id: number) => {
+  const changeUserState = (id: number, state: boolean) => {
     setOpen(!isOpen);
     setId(id);
+    setStateModal(state);
   };
   return (
     <>
@@ -30,7 +30,8 @@ export function TableProducts(p: Props) {
         isOpen={isOpen}
         closeModal={setOpen}
         itemId={id}
-        itemState={state}
+        itemState={stateModal}
+        action={deleteProductAction}
       />
       <div className="overflow-hidden rounded-lg ">
         <table className="w-full">
@@ -47,45 +48,11 @@ export function TableProducts(p: Props) {
           <tbody className="bg-secondary">
             {p.products.map((item) => {
               return (
-                <tr className="h-14" key={item.productId}>
-                  <td className="h-full ">
-                    <div className="flex justify-center  items-center px-4">
-                      <div className="w-11/12 flex flex-row items-center justify-start gap-2 h-full ">
-                        <Image
-                          className="w-8 rounded-3xl"
-                          width={40}
-                          height={40}
-                          src={item.image}
-                          alt=""
-                        />
-                        {item.name}
-                      </div>
-                    </div>
-                  </td>
-                  <td className="text-center ">{item.description}</td>
-                  <td className="text-center ">{item.price}</td>
-                  <td className="text-center ">{item.createdAt}</td>
-                  <td className="text-center ">{item.stock}</td>
-                  <td className="h-full  ">
-                    <div className="flex justify-center">
-                      <div className="flex flex-row gap-2">
-                        <Link href={"/dashboard/products/" + item.productId}>
-                          <button className="bg-green-400 p-2 h-10 rounded-lg">
-                            View
-                          </button>
-                        </Link>
-                        <button
-                          onClick={() => {
-                            deleteItem(item.productId);
-                          }}
-                          className="bg-red-400 p-2 h-10 rounded-lg"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
+                <TrBody
+                  key={item.id}
+                  product={item}
+                  deleteItem={changeUserState}
+                />
               );
             })}
           </tbody>

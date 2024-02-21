@@ -1,11 +1,9 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { signIn, signOut } from "../auth";
-import { changeUserState } from "./data";
+import { changeUserState, changeProductState } from "./data";
 import { redirect } from "next/navigation";
-export async function uploadImage() {
-  console.log("upload image");
-}
+
 export const authenticate = async (FormData: FormData) => {
   const { email, password } = Object.fromEntries(FormData);
   try {
@@ -26,11 +24,23 @@ export const deleteUserAction = async (FormData: FormData) => {
   const { id } = Object.fromEntries(FormData);
   const numeroId = parseInt(id.toString());
   try {
-    changeUserState(numeroId);
+    await changeUserState(numeroId);
   } catch (err: any) {
-    console.log("No se pudo eliminar el user ", err);
+    console.log("No se pudo eliminar el user,action ", err);
     throw err;
   }
   revalidatePath("/dashboard/users");
   redirect("/dashboard/users");
+};
+export const deleteProductAction = async (FormData: FormData) => {
+  const { id } = Object.fromEntries(FormData);
+  const numeroId = parseInt(id.toString());
+  try {
+    await changeProductState(numeroId);
+  } catch (err: any) {
+    console.log("No se pudo eliminar el user,action ", err);
+    throw err;
+  }
+  revalidatePath("/dashboard/products");
+  redirect("/dashboard/products");
 };

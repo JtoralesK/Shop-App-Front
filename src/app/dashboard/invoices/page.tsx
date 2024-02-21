@@ -1,5 +1,5 @@
 import { filteredInvoicessByName, getAllInvoices } from "@/app/lib/data";
-import { Invoices } from "@/app/utilities/invoices";
+import { Invoice } from "@/app/utilities/invoices";
 import { Suspense } from "react";
 import { TableInvoices } from "@/app/UI/table/invoicesTable";
 import { TableLayout } from "@/app/UI/tableLayout";
@@ -12,26 +12,18 @@ export default async function Invoices({
     page?: string;
   };
 }) {
-  let invoices = [] as Invoices[];
   const q = searchParams?.q || "";
   const page = Number(searchParams?.page) || 1;
-  let total = 1;
-  try {
-    if (q) {
-      let { invoicesArray, totalPages } = await filteredInvoicessByName(
-        q,
-        page
-      );
-      invoices = invoicesArray;
-      total = totalPages;
-    } else {
-      let { invoicesArray, totalPages } = await getAllInvoices(page);
-      invoices = invoicesArray;
-      total = totalPages;
-    }
-  } catch (e) {
-    console.log(e);
+  let result;
+
+  if (q) {
+    result = await filteredInvoicessByName(q, page);
+  } else {
+    result = await getAllInvoices(page);
   }
+  const { totalPages, content } = result;
+  const invoices = content as Invoice[];
+  const total = totalPages;
 
   return (
     <TableLayout addOne={Links.AddInovices}>

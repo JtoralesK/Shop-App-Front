@@ -16,20 +16,25 @@ export function AvatarDropDown(p: AvatarProps) {
   const [open, setOpen] = useState(false);
   return (
     <div className="py-2 w-full">
-      <div onClick={() => setOpen(!open)} className="relative ">
-        <div className="flex w-60 justify-end items-center gap-2">
-          <div className="w-6 h-6 rounded-full overflow-hidden  border-gray-900 cursor-pointer ">
-            <Image
-              src={p.imgUrl}
-              alt="imagen de pelfil del usuario"
-              width={40}
-              height={40}
-              className="object-cover w-full h-full"
-            />
-          </div>
-          <div className="cursor-pointer">
-            {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
-          </div>
+      <div className="relative ">
+        <div className="">
+          <button
+            onClick={() => setOpen(!open)}
+            className="flex w-60 justify-end items-center gap-2"
+          >
+            <div className="w-6 h-6 rounded-full overflow-hidden  border-gray-900 cursor-pointer ">
+              <Image
+                src={p.imgUrl}
+                alt="imagen de pelfil del usuario"
+                width={40}
+                height={40}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="cursor-pointer">
+              {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
+            </div>
+          </button>
         </div>
         {open && (
           <div className="absolute w-60 px-3 py-3  bg-gray-300 rounded-lg mt-4 ">
@@ -42,14 +47,7 @@ export function AvatarDropDown(p: AvatarProps) {
                 ></AvatarLink>
               </li>
               <li className="font-medium">
-                <form action={signOutAction}>
-                  <button className="w-full mt-1 flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-primary">
-                    <div className="mr-3 text-2xl">
-                      <BiSolidLogOut />
-                    </div>
-                    Logout
-                  </button>
-                </form>
+                <FormA />
               </li>
             </ul>
           </div>
@@ -73,5 +71,20 @@ const AvatarLink = (p: Props) => {
       <div className="mr-3 text-2xl">{p.icon}</div>
       {p.name}
     </Link>
+  );
+};
+const FormA = () => {
+  return (
+    <form action={signOutAction}>
+      <button
+        type="submit"
+        className="w-full mt-1 flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-primary"
+      >
+        <div className="mr-3 text-2xl">
+          <BiSolidLogOut />
+        </div>
+        Logout
+      </button>
+    </form>
   );
 };

@@ -46,8 +46,14 @@ export function Sidebar(p: Props) {
               }
             })}
           </div>
-          <div className="flex flex-col place-items-center">
-            <form action={signOutAction}>
+          <div className="flex flex-col place-items-center gap-2">
+            <form
+              className="flex flex-row gap-3 text-lg items-center 
+              cursor-pointer  w-9/12 p-2 rounded-lg pl-6 hover:font-bold 
+              text-firstWhite "
+              action={signOutAction}
+            >
+              {logoutLink.icon}
               <button>{logoutLink.name}</button>
             </form>
           </div>

@@ -5,6 +5,8 @@ import { useState } from "react";
 import { TableHeader } from "./tableHeader";
 import { TrBody } from "./trBody";
 import { UserTableI } from "./types";
+import { deleteUserAction } from "@/app/lib/actions";
+
 export function TableUsers(p: UserTableI) {
   const [isOpen, setOpen] = useState(false);
   const [id, setId] = useState(0);
@@ -23,6 +25,7 @@ export function TableUsers(p: UserTableI) {
         closeModal={setOpen}
         itemId={id}
         itemState={state}
+        action={deleteUserAction}
       />
       <div className="overflow-hidden rounded-lg ">
         <table className="w-full">

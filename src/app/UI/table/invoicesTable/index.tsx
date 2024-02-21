@@ -1,21 +1,15 @@
 "use client";
-import { Invoices, PaymentStatus } from "@/app/utilities/invoices";
+import { Invoice, PaymentStatus } from "@/app/utilities/invoices";
 import Link from "next/link";
 import { Pagination } from "@/app/UI/pagination";
 import { Theah } from "../thead";
 import { useState } from "react";
 type Props = {
-  invoices: Invoices[];
+  invoices: Invoice[];
   totalPages: number;
   currentPage: number;
 };
 export function TableInvoices(p: Props) {
-  const [isOpen, setOpen] = useState(false);
-  const [id, setId] = useState(0);
-  const deleteItem = (id: number) => {
-    setOpen(!isOpen);
-    setId(id);
-  };
   const styleTypePaymentButton = (type: PaymentStatus) => {
     switch (type) {
       case "Paid":
@@ -48,11 +42,11 @@ export function TableInvoices(p: Props) {
           <tbody className="bg-secondary">
             {p.invoices.map((item) => {
               return (
-                <tr className="h-14" key={item && item.invoiceId}>
-                  <td className="text-center">{item.customer}</td>
-                  <td className="text-center ">{item.invoiceId}</td>
+                <tr className="h-14" key={item && item.id}>
+                  <td className="text-center">{item.costumer}</td>
+                  <td className="text-center ">{item.id}</td>
                   <td className="text-center ">{item.totalProducts}</td>
-                  <td className="text-center ">{item.date}</td>
+                  <td className="text-center ">{item.createdAt}</td>
                   <td className="text-center ">${item.total}</td>
                   <td className="text-center ">{item.paymentMethod}</td>
                   <td className="text-center">
@@ -68,7 +62,7 @@ export function TableInvoices(p: Props) {
                   <td className="h-full  ">
                     <div className="flex justify-center">
                       <div className="flex flex-row gap-2">
-                        <Link href={"/dashboard/users/" + item.invoiceId}>
+                        <Link href={"/dashboard/users/" + item.id}>
                           <button className="bg-green-400 p-2 h-10 rounded-lg">
                             View
                           </button>

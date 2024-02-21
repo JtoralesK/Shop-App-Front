@@ -21,7 +21,7 @@ async function Users({
   if (q) {
     result = await filteredUsersByName(q, page);
   } else {
-    result = await getAllUsers(page, token);
+    result = await getAllUsers(page);
   }
   const { totalPages, content } = result;
 
