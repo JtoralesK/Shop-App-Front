@@ -1,8 +1,9 @@
-import { AddInvoice } from "./addinvoice";
+import { AddInvoice } from "@/app/components/addInvoice";
 import { auth } from "@/app/auth";
 import { User } from "@/app/utilities/users";
 import { filteredProductsByName, getAllProducts } from "@/app/lib/data";
 import { Product } from "@/app/utilities/products";
+import { DefaultInvoice } from "@/app/utilities/invoices";
 export default async function Page({
   searchParams,
 }: {
@@ -22,12 +23,17 @@ export default async function Page({
   } else {
     result = await getAllProducts(page);
   }
-  const { totalPages, content } = result;
+  const { totalPages, content } = result.data;
   const products = content as Product[];
-  const total = totalPages;
+  const obj = { totalPages, currentPage: page, products: products };
+  DefaultInvoice.biller = user;
   return (
     <>
-      <AddInvoice user={user} products={products} />
+      <AddInvoice
+        addTypeObj={obj}
+        typeComponent="add"
+        invoice={DefaultInvoice}
+      />
     </>
   );
 }
