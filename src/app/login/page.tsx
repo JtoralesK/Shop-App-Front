@@ -4,7 +4,7 @@ import Image from "next/image";
 import { authenticate } from "../lib/actions";
 import { toast } from "react-hot-toast";
 import { useState, useEffect } from "react";
-import { SubmitButton } from "@/app/components/product/form";
+import { SubmitButton } from "@/app/UI/submitButton";
 export default function Login() {
   const [loading, setLoading] = useState(false);
 
@@ -68,7 +68,7 @@ export default function Login() {
                       loadingSubmit={(e) => {
                         setLoading(e);
                       }}
-                      typeComponent={"Sign in"}
+                      name={"Sign in"}
                     />
                     {state && <p className="text-red-500">{state}</p>}
                   </form>

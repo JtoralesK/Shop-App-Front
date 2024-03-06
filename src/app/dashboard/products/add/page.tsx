@@ -1,9 +1,9 @@
-import { ProductComponent } from "@/app/components/product";
+import { AddProductComponent } from "@/app/components/product/addProduct";
 import { defaultProduct } from "@/app/utilities/products";
 export default function AddProduct() {
   return (
     <>
-      <ProductComponent typeComponent="add" item={defaultProduct} />
+      <AddProductComponent item={defaultProduct} />
     </>
   );
 }

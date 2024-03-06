@@ -2,7 +2,7 @@
 import { IoMdClose } from "react-icons/io";
 import { SubmitButton } from "./button";
 import { useState } from "react";
-import { MiniLoading } from "./miniSpinner";
+import { MiniLoading } from "../miniSpinner";
 type Props = {
   category: "user" | "product";
   isOpen: boolean;

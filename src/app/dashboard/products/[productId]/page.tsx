@@ -1,11 +1,11 @@
 "use client";
 import { productViewStore } from "@/app/store/viewProductContext";
-import { ProductComponent } from "@/app/components/product";
+import { ViewProductComponent } from "@/app/components/product/viewProduct";
 export default function ProductId() {
   const { product } = productViewStore();
   return (
     <>
-      <ProductComponent item={product} typeComponent="view" />
+      <ViewProductComponent item={product} />
     </>
   );
 }

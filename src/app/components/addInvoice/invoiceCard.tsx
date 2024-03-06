@@ -1,12 +1,12 @@
 "use state";
-import { InvoiceArrayItem, FirstFormSubmitObject } from "./types";
+import { InvoiceArrayItem } from "./types";
 import { useState } from "react";
 import { GetNowDate } from "./invoiceCardTable";
 import { InvoiceCardTable } from "./invoiceCardTable";
 import { saveInvoiceAction } from "@/app/lib/actions/invoice";
 import { User } from "@/app/utilities/users";
 import { Invoice } from "@/app/utilities/invoices";
-import { SubmitButton } from "../product/form";
+import { SubmitButton } from "@/app/UI/submitButton";
 type Props = {
   products: InvoiceArrayItem[];
   typeComponent: "add" | "view";
@@ -125,7 +125,7 @@ const SaveInvoiceForm = (p: SaveInvoiceProp) => {
       <SubmitButton
         itemState={p.state}
         loadingSubmit={(loading: boolean) => p.setState(loading)}
-        typeComponent="Pay now"
+        name="Pay now"
         className=" bg-primary rounded-lg text-white w-full px-4 h-8 item"
       />
     </form>

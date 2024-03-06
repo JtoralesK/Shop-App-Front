@@ -9,7 +9,7 @@ import { useState } from "react";
 type Prop = {
   user: User;
 };
-import { SubmitButton } from "@/app/components/product/form";
+import { SubmitButton } from "@/app/UI/submitButton";
 export function AddUserComponent({ user }: Prop) {
   const [state, setState] = useState(false);
 
@@ -29,7 +29,7 @@ export function AddUserComponent({ user }: Prop) {
               <SubmitButton
                 itemState={state}
                 loadingSubmit={(s: boolean) => setState(s)}
-                typeComponent="add"
+                name="add"
               />
             </div>
           </div>
