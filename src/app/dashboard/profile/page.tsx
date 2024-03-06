@@ -1,6 +1,5 @@
-import { UserComponent } from "@/app/components/addViewUser";
 import { auth } from "@/app/auth";
-
+import { ViewUserComponent } from "@/app/components/user/oneUser/view";
 export default async function Profile() {
   const seccion: any = await auth();
   if (!seccion || !seccion.user) {
@@ -9,7 +8,7 @@ export default async function Profile() {
   }
   return (
     <>
-      <UserComponent user={seccion.user.user} typeComponent="view" />
+      <ViewUserComponent user={seccion.user.user} />
     </>
   );
 }
