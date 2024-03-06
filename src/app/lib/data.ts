@@ -1,5 +1,4 @@
-import { auth } from "@/app/auth";
-
+import { fetchApi } from "./fetchApi";
 export const filteredUsersByName = async (q: any, page: number) => {
   const url = "users/all/filter?searchTerm=" + q + "&offset=" + (page - 1);
   return fetchApi({
@@ -31,7 +30,15 @@ export const changeUserState = async (id: number) => {
     },
   });
 };
-
+export const addUser = async (data: any) => {
+  return await fetchApi({
+    dataFetch: {
+      url: "api/auth/register",
+      method: "POST",
+      body: data,
+    },
+  });
+};
 //products
 export const filteredProductsByName = async (q: any, page: number) => {
   const url = "products/all/filter?searchTerm=" + q + "&offset=" + (page - 1);
@@ -53,6 +60,15 @@ export const changeProductState = async (id: number) => {
     dataFetch: {
       url: "products/" + id,
       method: "DELETE",
+    },
+  });
+};
+export const addProduct = async (data: any) => {
+  return await fetchApi({
+    dataFetch: {
+      url: "products/save",
+      method: "POST",
+      body: data,
     },
   });
 };
@@ -80,29 +96,18 @@ export const getAllInvoices = async (page: number) => {
   });
 };
 
-const fetchApi = async ({ dataFetch }: any) => {
-  const { url, method, body } = dataFetch;
-  const seccion: any = await auth();
-  const token = seccion.user.token;
-  if (!token) return { error: "No token" };
-  let data: any = {};
-  const urlFetch = `http://localhost:4000/${url}`;
-  try {
-    const response = await fetch(urlFetch, {
-      method: method,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      cache: "no-cache",
-    });
-    if (!response.ok) {
-      throw new Error(
-        `Error here: ${response.status} - ${response.statusText}`
-      );
-    }
-    data = await response.json();
-    return data;
-  } catch (error: any) {
-    return { error: error.message };
-  }
+export const getOneInvoice = async (id: number) => {
+  const url = `invoices/${id}`;
+  return fetchApi({
+    dataFetch: { url, method: "GET" },
+  });
+};
+export const saveInvoice = async (data: any) => {
+  return await fetchApi({
+    dataFetch: {
+      url: "invoices/save",
+      method: "POST",
+      body: data,
+    },
+  });
 };
