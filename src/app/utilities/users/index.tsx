@@ -9,7 +9,6 @@ export type User = {
   id: number;
   name: string;
   email: string;
-  bio: string;
   lastName: string;
   phoneNumber: string;
   country: string;
@@ -52,7 +51,6 @@ export const defaultUser: User = {
   id: 1,
   name: "Alejandro",
   email: "alejandro@example.com",
-  bio: "Descripción de Alejandro",
   lastName: "González",
   phoneNumber: "123-456-7890",
   country: "Argentina",

@@ -41,10 +41,10 @@ const defaultCategory = {
 };
 export const defaultProduct: Product = {
   name: "Iphone x",
-  description: "string",
+  description: "description of the product",
   price: 1000,
   stock: 1,
-  image: "string",
+  image: "/images/iphone.jpg",
   productCategory: defaultCategory,
   gender: defaultGender,
   createdAt: "21-2-2024",
