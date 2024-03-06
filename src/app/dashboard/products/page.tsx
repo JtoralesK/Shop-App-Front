@@ -22,11 +22,11 @@ export default async function Products({
   } else {
     result = await getAllProducts(page);
   }
-  const { totalPages, content } = result;
+  const { totalPages, content } = result.data;
   const products = content as Product[];
   const total = totalPages;
   return (
-    <TableLayout addOne={Links.AddProducts}>
+    <TableLayout addOne={Links.AddProducts} searchName="product">
       <Suspense fallback={"loading"} key={q + page}>
         <TableProducts
           products={products}

@@ -21,12 +21,12 @@ export default async function Invoices({
   } else {
     result = await getAllInvoices(page);
   }
-  const { totalPages, content } = result;
+  const { totalPages, content } = result.data;
   const invoices = content as Invoice[];
   const total = totalPages;
 
   return (
-    <TableLayout addOne={Links.AddInovices}>
+    <TableLayout addOne={Links.AddInovices} searchName="invoice">
       <Suspense fallback={"loading"} key={q + page}>
         <TableInvoices
           invoices={invoices}

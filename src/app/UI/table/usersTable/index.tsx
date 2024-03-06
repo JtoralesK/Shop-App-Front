@@ -5,7 +5,7 @@ import { useState } from "react";
 import { TableHeader } from "./tableHeader";
 import { TrBody } from "./trBody";
 import { UserTableI } from "./types";
-import { deleteUserAction } from "@/app/lib/actions";
+import { deleteUserAction } from "@/app/lib/actions/user";
 
 export function TableUsers(p: UserTableI) {
   const [isOpen, setOpen] = useState(false);

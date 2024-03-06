@@ -4,7 +4,7 @@ import { getAllProducts } from "@/app/lib/data";
 
 export async function HorizontalCardsSection() {
   let result = await getAllProducts(1);
-  const { totalPages, content } = result;
+  const { totalPages, content } = result.data;
   const productsArray = content as Product[];
   let cont = 0;
   return (

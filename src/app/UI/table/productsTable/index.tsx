@@ -1,5 +1,5 @@
 "use client";
-import { deleteProductAction } from "@/app/lib/actions";
+import { deleteProductAction } from "@/app/lib/actions/product";
 import { TrBody } from "./trBody";
 import { Product } from "@/app/utilities/products";
 import { Pagination } from "@/app/UI/pagination";

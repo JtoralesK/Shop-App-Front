@@ -23,13 +23,13 @@ async function Users({
   } else {
     result = await getAllUsers(page);
   }
-  const { totalPages, content } = result;
+  const { totalPages, content } = result.data;
 
   const users = content as User[];
   const total = totalPages;
 
   return (
-    <TableLayout addOne={Links.AddUsers}>
+    <TableLayout addOne={Links.AddUsers} searchName="user">
       <Suspense fallback={"loading"} key={q + page}>
         <TableUsers
           users={users}

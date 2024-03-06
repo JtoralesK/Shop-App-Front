@@ -9,11 +9,17 @@ type Props = {
 export function HorizontalCard(p: Props) {
   return (
     <>
-      <div className="bg-white h-1/3 w-9/12 rounded-lg p-2 flex flex-row">
-        <div className="w-1/5">
-          <Image width={40} height={40} alt="" src={p.image} />
+      <div className="bg-white h-24 w-9/12 rounded-lg p-2 flex flex-row">
+        <div className="w-14 bg-red-200">
+          <Image
+            className="h-full w-full"
+            width={60}
+            height={40}
+            alt={p.title}
+            src={p.image}
+          />
         </div>
-        <div className="w-4/5 flex flex-row justify-between">
+        <div className="w-4/5 flex flex-row justify-between ml-2">
           <div className="flex flex-col ">
             <p className="text-md">{p.title}</p>
             <p className="text-xs">{p.stock}</p>

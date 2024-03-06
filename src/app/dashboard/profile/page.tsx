@@ -1,6 +1,5 @@
 import { UserComponent } from "@/app/components/addViewUser";
 import { auth } from "@/app/auth";
-import { User } from "next-auth";
 
 export default async function Profile() {
   const seccion: any = await auth();
@@ -10,7 +9,7 @@ export default async function Profile() {
   }
   return (
     <>
-      <UserComponent user={seccion.user.user} />
+      <UserComponent user={seccion.user.user} typeComponent="view" />
     </>
   );
 }

@@ -1,5 +1,4 @@
 "use client";
-import { deleteUserAction, deleteProductAction } from "@/app/lib/actions";
 import { IoMdClose } from "react-icons/io";
 import { SubmitButton } from "./button";
 import { useState } from "react";

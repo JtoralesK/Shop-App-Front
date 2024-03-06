@@ -12,34 +12,57 @@ export const PersonalInformation = (p: PropSection) => {
       <div className="flex flex-row justify-between items-center">
         <h2 className="text-sm font-bold">Personal Information</h2>
       </div>
-      <form className="w-full flex flex-col gap-3">
+      <div className="w-full flex flex-col gap-3">
         <div className="flex flex-row gap-4">
-          <LabelText text="First Name" placeholder={obj.name} />
-          <LabelText text="Last Name" placeholder={obj.lastName} />
-          <LabelText text="Email" placeholder={obj.email} type="email" />
+          <LabelText
+            text="First Name"
+            placeholder={obj.name}
+            name="firstName"
+            required
+          />
+          <LabelText
+            text="Last Name"
+            placeholder={obj.lastName}
+            name="lastName"
+            required
+          />
+          <LabelText
+            text="Email"
+            placeholder={obj.email}
+            type="email"
+            name="email"
+            required
+          />
         </div>
         <div className=" flex flex-row gap-4 items-center">
           <LabelText
             text="Phone Number"
             placeholder={obj.phoneNumber}
             type="text"
+            name="phoneNumber"
+            required
           />
-          <DefaultLabel text="Choose Sex">
+          <div className="w-full min-h-6 ">
+            <p className="my-1 text-gray-500 font-medium">Choose Sex</p>
             <Dropdown
               items={Genders}
               placeholder="Genre"
               itemSelected={obj.gender.genderType}
+              name="genderType"
             />
-          </DefaultLabel>
-          <DefaultLabel text="Choose Role">
+          </div>
+          <div className="w-full min-h-6 ">
+            <p className="my-1 text-gray-500 font-medium">Choose Role</p>
             <Dropdown
               items={Roles}
               placeholder="Role"
               itemSelected={obj.role.roleType}
+              name="roleType"
+              h="24"
             />
-          </DefaultLabel>
+          </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

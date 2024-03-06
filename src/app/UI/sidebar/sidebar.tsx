@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { linksNames } from "@/app/utilities/names/dashboardLinksNames";
 import { signOutAction } from "../../lib/actions";
 import { Role } from "@/app/utilities/users";
+import { RiAdminFill } from "react-icons/ri";
 type Props = {
   userRol: Role;
 };
@@ -20,6 +21,15 @@ export function Sidebar(p: Props) {
       <aside className="w-3/12 h-full bg-primary rounded-r-3xl ">
         <div className="h-full flex flex-col justify-between  py-6 ">
           <div className="flex flex-col place-items-center gap-2">
+            <MenuLink
+              name={`User ${p.userRol.roleType}`}
+              icon={<RiAdminFill />}
+              href={"/dashboard"}
+              key={1}
+              active={false}
+              hover={false}
+            />
+
             {linksExceptLogout.map((linkName) => {
               if (linkName.name == "Users") {
                 if (p.userRol.roleType == "ADMIN") {
@@ -54,7 +64,14 @@ export function Sidebar(p: Props) {
               action={signOutAction}
             >
               {logoutLink.icon}
-              <button>{logoutLink.name}</button>
+              <button
+                onClick={() => {
+                  console.log("salir");
+                }}
+                type="submit"
+              >
+                {logoutLink.name}
+              </button>
             </form>
           </div>
         </div>

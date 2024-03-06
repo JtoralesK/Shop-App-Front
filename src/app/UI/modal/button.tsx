@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useFormStatus } from "react-dom";
 type Prop = {
   itemState: boolean;
-  closeModal: (open: boolean) => void;
+  closeModal?: (open: boolean) => void;
   loadingSubmit: (loading: boolean) => void;
 };
 export function SubmitButton(p: Prop) {
@@ -11,7 +11,7 @@ export function SubmitButton(p: Prop) {
   p.loadingSubmit(pending);
   useEffect(() => {
     if (pending === false) {
-      p.closeModal(false);
+      if (p.closeModal) p.closeModal(false);
     }
   }, [pending]);
 

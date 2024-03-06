@@ -6,6 +6,7 @@ type Props = {
   href: string;
   active: boolean;
   top?: string;
+  hover?: boolean;
 };
 
 export function MenuLink(p: Props) {
@@ -13,7 +14,9 @@ export function MenuLink(p: Props) {
     <div
       className={`${p.active && "bg-secondary text-black"} ${
         p.active ? "text-forth" : "text-firstWhite"
-      } hover:font-bold flex flex-row gap-3 text-lg items-center cursor-pointer  w-9/12 p-2 rounded-lg pl-6 ${
+      } ${
+        p.hover === false ? "" : "hover:font-bold "
+      } flex flex-row gap-3 text-lg items-center cursor-pointer  w-9/12 p-2 rounded-lg pl-6 ${
         p.top && p.top
       }`}
     >

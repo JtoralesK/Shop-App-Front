@@ -5,22 +5,22 @@ type Prop = {
   items: string[];
   placeholder: string;
   itemSelected?: string;
+  name: string;
+  h?: string;
 };
 export const Dropdown = (p: Prop) => {
   const itemSelected = p.itemSelected || "";
   const [selectedItem, setSelectedItem] = useState(itemSelected);
+  const [itemId, setItemId] = useState(0);
+
   const [isOpen, setIsOpen] = useState(false);
   const dropdownClick = () => {
     setIsOpen(!isOpen);
   };
-  const handleItemClick = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    item: string
-  ) => {
+  const handleItemClick = (item: string, id: number) => {
     setSelectedItem(item);
-    setIsOpen(false);
-    event.stopPropagation();
-    event.nativeEvent.stopImmediatePropagation();
+    setItemId(id + 1);
+    dropdownClick();
   };
 
   return (
@@ -33,6 +33,13 @@ export const Dropdown = (p: Prop) => {
             className=" h-9 flex flex-row w-full items-center justify-between w-full rounded-md  bg-gray-100 px-2 text-sm font-medium text-gray-700 border-2 "
           >
             {selectedItem || p.placeholder}
+            <input value={itemId} name={p.name} type="hidden" />
+            <input
+              value={selectedItem}
+              name={p.name + "String"}
+              type="hidden"
+            />
+
             <div className="ml-4">
               {isOpen ? <FaArrowUp /> : <FaArrowDown />}
             </div>
@@ -41,7 +48,11 @@ export const Dropdown = (p: Prop) => {
       </div>
 
       {isOpen && (
-        <div className="h-37 overflow-auto origin-top-right absolute left-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+        <div
+          className={`${
+            p.h ? p.h : " h-28 "
+          } overflow-auto origin-top-right absolute left-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5`}
+        >
           <div
             className="py-1"
             role="menu"
@@ -51,7 +62,7 @@ export const Dropdown = (p: Prop) => {
             {p.items.map((item, index) => (
               <button
                 key={index}
-                onClick={(e) => handleItemClick(e, item)}
+                onClick={() => handleItemClick(item, index)}
                 className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 role="menuitem"
               >

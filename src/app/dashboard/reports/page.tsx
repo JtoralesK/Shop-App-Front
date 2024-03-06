@@ -3,8 +3,6 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { LineComponent } from "./line";
 import { DemoComponent } from "./bar";
-import { CldUploadWidget, CldImage } from "next-cloudinary";
-import { useState } from "react";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Reports() {
@@ -29,50 +27,3 @@ export default function Reports() {
     </>
   );
 }
-interface UploadedAssetData {
-  public_id: string;
-  width: number;
-  height: number;
-  id: string;
-}
-/*
-export function UploadImageComponent() {
-  const [result, setResult] = useState<UploadedAssetData | null>(null);
-  console.log(result, "result");
-  return (
-    <>
-      <main>
-        <div className="flex flex-row items center">
-          <div className="border rounded-full w-20 h-20 border-2 border-orange-200">
-            {" "}
-            {result ? (
-              <CldImage
-                src={result.public_id}
-                width={300}
-                height={300}
-                alt="Uploaded Image"
-                className="w-full h-full rounded-full"
-              />
-            ) : null}
-          </div>
-          <CldUploadWidget
-            signatureEndpoint="/api/sign-image"
-            onSuccess={(result) => {
-              setResult(result?.info as UploadedAssetData);
-            }}
-          >
-            {({ open }) => (
-              <button
-                className="bg-indigo-500 rounded py-2 px-4 mb-4 text-white"
-                onClick={() => open()}
-              >
-                Upload an Image
-              </button>
-            )}
-          </CldUploadWidget>
-        </div>
-      </main>
-    </>
-  );
-}
-*/

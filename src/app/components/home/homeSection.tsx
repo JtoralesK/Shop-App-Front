@@ -4,15 +4,10 @@ import { HorizontalCardsSection } from "./horizontalCardsSection";
 import { auth } from "../../auth";
 export async function HomeSection() {
   const session: any = await auth();
-
   return (
     <>
       <div className="flex gap-1 flex-col">
         <h1 className="text-3xl font-bold">Hello! {session.user.user.name}</h1>
-        <p className="text-md">
-          Never put off till tomorrow what can be done today!
-        </p>
-        <p className="text-md text-forth pt-2">Today</p>
       </div>
       <div className="w-full flex flex-row mt-4 ">
         <MiniCardsSection />
