@@ -30,7 +30,9 @@ export function Pagination({
           >
             &lt;
           </button>
-          <p className="text-primary font-bold">{currentPage}</p>
+          <p className="text-primary font-bold">
+            {totalPages === 0 ? 0 : currentPage}
+          </p>
           <div>
             <p className="text-primary font-bold">/</p>
           </div>
