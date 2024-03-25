@@ -72,6 +72,15 @@ export const addProduct = async (data: any) => {
     },
   });
 };
+export const editProduct = async (id: number, data: any) => {
+  return await fetchApi({
+    dataFetch: {
+      url: "products/" + id,
+      method: "PUT",
+      body: data,
+    },
+  });
+};
 //productsCategory
 export const getAllProductsCategory = async () => {
   const url = "productsCategory/all";

@@ -27,7 +27,7 @@ export const fetchApi = async ({ dataFetch }: any) => {
       );
     }
     data = await response.json();
-    return { data, status: response.status, response };
+    return { data, status: response.status };
   } catch (error: any) {
     return { error: error.message };
   }

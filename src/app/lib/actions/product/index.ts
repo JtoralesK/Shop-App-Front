@@ -1,9 +1,8 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { z } from "zod";
-import { addProduct, addUser } from "../../data";
-import { productSchema } from "../schemas/index";
+import { addProduct, editProduct } from "../../data";
+import { productSchema, productSchemaOptional } from "../schemas/index";
 import { changeProductState } from "../../data";
 
 export const saveProductAction = async (FormData: FormData) => {
@@ -27,12 +26,42 @@ export const saveProductAction = async (FormData: FormData) => {
       productCategoryId: parseInt(productCategoryId.toString()),
     });
     await addProduct(product);
-    console.log("todo ok");
   } catch (error: any) {
     console.error(error.errors);
   }
   revalidatePath("/dashboard/products");
   redirect("/dashboard/products");
+};
+export const editProductAction = async (FormData: FormData) => {
+  const {
+    id,
+    name,
+    description,
+    price,
+    stock,
+    image,
+    genderId,
+    productCategoryId,
+  } = Object.fromEntries(FormData);
+  console.log(price, stock, image, genderId, productCategoryId, "here");
+  try {
+    const product = productSchemaOptional.parse({
+      id: parseInt(id.toString()),
+      name,
+      description,
+      price: parseInt(price.toString()),
+      stock: parseInt(stock.toString()),
+      image,
+      genderId: parseInt(genderId.toString()),
+      productCategoryId: parseInt(productCategoryId.toString()),
+    });
+    // console.log(product);
+    //await editProduct(parseInt(id.toString()), product);
+  } catch (error: any) {
+    // console.error(error.errors);
+  }
+  // revalidatePath("/dashboard/products");
+  //redirect("/dashboard/products");
 };
 export const deleteProductAction = async (FormData: FormData) => {
   const { id } = Object.fromEntries(FormData);

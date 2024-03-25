@@ -1,9 +1,9 @@
-import { AddInvoice } from "@/app/components/addInvoice";
 import { auth } from "@/app/auth";
 import { User } from "@/app/utilities/users";
 import { filteredProductsByName, getAllProducts } from "@/app/lib/data";
 import { Product } from "@/app/utilities/products";
 import { DefaultInvoice } from "@/app/utilities/invoices";
+import { AddInvoiceComponent } from "@/app/components/invoice/add";
 export default async function Page({
   searchParams,
 }: {
@@ -29,11 +29,7 @@ export default async function Page({
   DefaultInvoice.biller = user;
   return (
     <>
-      <AddInvoice
-        addTypeObj={obj}
-        typeComponent="add"
-        invoice={DefaultInvoice}
-      />
+      <AddInvoiceComponent addTypeObj={obj} invoice={DefaultInvoice} />
     </>
   );
 }

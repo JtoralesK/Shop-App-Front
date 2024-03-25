@@ -44,6 +44,16 @@ export const TrBody = (p: Prop) => {
                   View
                 </button>
               </Link>
+              <Link href={"/dashboard/products/edit/" + p.product.id}>
+                <button
+                  className="bg-orange-200 p-2 h-10 rounded-lg"
+                  onClick={() => {
+                    setProduct(p.product);
+                  }}
+                >
+                  Edit
+                </button>
+              </Link>
               <ChangeEntityStateButton
                 deleteItem={(id) => {
                   deleteItem(id, p.product.active);

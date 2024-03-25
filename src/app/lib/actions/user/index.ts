@@ -18,7 +18,7 @@ export const deleteUserAction = async (FormData: FormData) => {
   redirect("/dashboard/users");
 };
 
-export const SaveUserAction = async (FormData: FormData) => {
+export const SaveUserAction = async (state: any, FormData: FormData) => {
   const {
     image,
     firstName,
@@ -28,11 +28,12 @@ export const SaveUserAction = async (FormData: FormData) => {
     genderType,
     roleType,
     country,
-    pastalCode,
+    postalCode,
     city,
     confirmedPassword,
   } = Object.fromEntries(FormData);
   let ok = false;
+  console.log(postalCode, 12412414);
   try {
     const user = userSchema.parse({
       name: firstName,
@@ -43,13 +44,17 @@ export const SaveUserAction = async (FormData: FormData) => {
       profileImgUrl: image,
       gender_Id: parseInt(genderType.toString()),
       city,
-      postalCode: pastalCode,
+      postalCode,
       phoneNumber,
       country,
     });
     const response = await addUser(user);
     if (response.status === 200) {
       ok = true;
+      if (response.data.errorResponse.error) {
+        ok = false;
+        return response.data.errorResponse.messageError;
+      }
     }
   } catch (error: any) {
     console.error(error.errors, "2");

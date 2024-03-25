@@ -20,20 +20,20 @@ ChartJS.register(
 );
 export const DemoComponent: React.FC<{}> = () => {
   const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
   ];
   const [data, setData] = useState({
     labels: labels,
     datasets: [
       {
-        label: "Expenses by Month",
-        data: [65, 59, 80, 81, 56, 55, 40],
+        label: "Invoces per day",
+        data: [15, 29, 10, 31, 56, 55, 40],
         backgroundColor: ["rgb(153, 102, 255)"],
         borderColor: ["rgb(153, 102, 255)"],
         borderWidth: 1,

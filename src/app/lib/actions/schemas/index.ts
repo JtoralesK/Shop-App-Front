@@ -22,6 +22,16 @@ export const productSchema = z.object({
   genderId: z.number().min(1),
   productCategoryId: z.number().min(1),
 });
+export const productSchemaOptional = z.object({
+  id: z.number().min(1),
+  name: z.string().optional(),
+  description: z.string().optional(),
+  price: z.number().min(1).optional(),
+  stock: z.number().min(1).optional(),
+  image: z.string().optional(),
+  genderId: z.number().min(1).optional(),
+  productCategoryId: z.number().min(1).optional(),
+});
 
 export const invoiceSchema = z.object({
   costumer: z.string().nonempty(),

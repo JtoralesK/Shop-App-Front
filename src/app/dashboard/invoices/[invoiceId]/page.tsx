@@ -1,8 +1,7 @@
 import { getOneInvoice } from "@/app/lib/data";
-import { AddInvoice } from "@/app/components/addInvoice";
-import { User } from "@/app/utilities/users";
-import { InvoiceArrayItem } from "@/app/components/addInvoice/types";
+import { InvoiceArrayItem } from "@/app/components/invoice/types";
 import { Invoice } from "@/app/utilities/invoices";
+import { ViewInvoiceComponent } from "@/app/components/invoice/view";
 export default async function Page(obj: {
   params: { invoiceId: string };
   searchParams: {};
@@ -21,7 +20,7 @@ export default async function Page(obj: {
   invoiceResponse.invoiceItems = InvoiceArrayItem;
   return (
     <>
-      <AddInvoice typeComponent="view" invoice={invoiceResponse} />
+      <ViewInvoiceComponent invoice={invoiceResponse} />
     </>
   );
 }
