@@ -1,7 +1,18 @@
-export const inputs = [
+import { User } from "../../utilities/users/index";
+interface Input {
+  id: number;
+  name: keyof User;
+  type: string;
+  placeholder: string;
+  label: string;
+  required: boolean;
+  pattern: string;
+  errorMessage: string;
+}
+export const inputs: Input[] = [
   {
     id: 1,
-    name: "firstName",
+    name: "name",
     type: "text",
     placeholder: "Joe",
     errorMessage: "It should be at least 3 characters!",
@@ -41,19 +52,9 @@ export const inputs = [
   },
 ];
 
-export const addressInputs = [
+export const addressInputs: Input[] = [
   {
     id: 1,
-    name: "address",
-    type: "text",
-    placeholder: "123 Main St",
-    errorMessage: "Please enter a valid address!",
-    label: "Address",
-    required: true,
-    pattern: ".{3,}", // Patrón básico que exige al menos 3 caracteres
-  },
-  {
-    id: 2,
     name: "postalCode",
     type: "text",
     placeholder: "12345",
@@ -63,7 +64,7 @@ export const addressInputs = [
     pattern: "^\\d{4,}$",
   },
   {
-    id: 3,
+    id: 2,
     name: "city",
     type: "text",
     placeholder: "New York",
@@ -82,6 +83,8 @@ export const addressInputs = [
     required: true,
     pattern: ".{3,}",
   },
+];
+export const passwordInputs = [
   {
     id: 4,
     name: "password",
