@@ -23,7 +23,6 @@ export function AddUserComponent({ user }: Prop) {
     postalCode: false,
     city: false,
   });
-  console.log(values);
   const action = async (e: any) => {
     if (
       values.firstName &&
@@ -37,7 +36,7 @@ export function AddUserComponent({ user }: Prop) {
     ) {
       formAction(e);
     } else {
-      console.log("algo falto");
+      console.error("Incomplete form");
     }
   };
   return (
@@ -48,12 +47,8 @@ export function AddUserComponent({ user }: Prop) {
           className="w-10/12 h-[85vh] gap-1 bg-firstWhite flex flex-col rounded-2xl  p-2"
         >
           <FirstSection />
-          <PersonalInformation
-            obj={user}
-            values={values}
-            setValues={setValues}
-          />
-          <Adress values={values} setValues={setValues} />
+          <PersonalInformation obj={user} />
+          <Adress obj={user} />
           <div>
             {stateAction && (
               <p className="text-red-500 p-2">Error:{stateAction}</p>
