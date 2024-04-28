@@ -4,6 +4,7 @@ import { InvoiceCard } from "./invoiceCard";
 import { AddInvoiceProp, InvoiceArrayItem } from "../types";
 import { Invoice } from "@/app/utilities/invoices";
 import { SectionToAddComponent } from "./sectionToAddComponent";
+import { Product } from "@/app/utilities/products";
 export function AddInvoiceComponent(p: AddInvoiceProp) {
   const { addTypeObj } = p;
   const [showAddProducts, setShowAddProducts] = useState(true);
@@ -14,18 +15,12 @@ export function AddInvoiceComponent(p: AddInvoiceProp) {
   const changeSection = () => {
     setShowAddProducts(!showAddProducts);
   };
+  const { deleteProductInvoiceCard } = useInvoiceManagement(
+    p.addTypeObj.products,
+    setInvoice,
+    invoice
+  );
 
-  const deleteProductInvoiceCard = (id: number, amount: number) => {
-    const newProducts = invoice.invoiceItems.filter(
-      (product) => product.item.id !== id
-    );
-    addTypeObj.products.map((product: any) => {
-      if (product.id === id) {
-        product.stock += amount;
-      }
-    });
-    setInvoiceItems(newProducts);
-  };
   return (
     <>
       <div className="h-full w-full my-2 ">
@@ -56,3 +51,24 @@ export function AddInvoiceComponent(p: AddInvoiceProp) {
     </>
   );
 }
+
+const useInvoiceManagement = (
+  productsToBuy: Product[],
+  setListInvoices: (e: any) => void,
+  invoice: Invoice
+) => {
+  const deleteProductInvoiceCard = (id: number, amount: number) => {
+    //se crea una nueva lista de productos sin el producto eliminado
+    const invListWithoutInvDeleted = invoice.invoiceItems.filter(
+      (product) => product.item.id !== id
+    );
+    //se resetea el stock del producto eliminado
+    productsToBuy.map((product: any) => {
+      if (product.id === id) {
+        product.stock += amount;
+      }
+    });
+    setListInvoices({ ...invoice, invoiceItems: invListWithoutInvDeleted });
+  };
+  return { deleteProductInvoiceCard };
+};

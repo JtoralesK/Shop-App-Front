@@ -29,7 +29,6 @@ export const SectionToAddComponent = (p: Prop2) => {
           setInvoice({ ...invoice, costumer: e });
         }}
         setInvoice={(e) => setInvoice(e)}
-        typeComponent="add"
         invoice={invoice}
       />
     );

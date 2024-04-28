@@ -37,6 +37,7 @@ export const CreateInvoiceForm = ({ invoice }: Prop) => {
             placeholder="Select Condition"
             name="payment"
             itemSelected={invoice.paymentMethod.paymentMethod}
+            disabled={true}
           />
         </div>
         <div className=" w-1/2">

@@ -4,19 +4,22 @@ import { LabelText } from "@/app/UI/labelText";
 import { FaArrowRight } from "react-icons/fa";
 import { dropdownItems } from "@/app/utilities/invoices/index";
 import { Invoice } from "@/app/utilities/invoices";
+import { showToastError } from "@/app/utilities/toastMessages";
 type Prop = {
   changeSection: () => void;
   costumerOnChange?: (e: string) => void;
   setInvoice?: (e: Invoice) => void;
-  typeComponent: "add" | "view";
   invoice: Invoice;
 };
 
 export const CreateInvoiceForm = (p: Prop) => {
-  const { typeComponent, invoice } = p;
+  const { invoice } = p;
   const handleSubmit = (event: any) => {
     event.preventDefault();
     const { payment, costumer, biller, paymentString } = event.target;
+    if (payment.value === "0") {
+      showToastError('You must select a payment method"');
+    }
     if (payment.value && biller.value && costumer.value) {
       if (payment.value !== "0") {
         p.changeSection();
@@ -47,7 +50,6 @@ export const CreateInvoiceForm = (p: Prop) => {
           type="text"
           required={true}
           name="costumer"
-          disabled={typeComponent === "view" ? true : false}
           onChange={(e: string) => {
             if (p.costumerOnChange) {
               p.costumerOnChange(e);
@@ -70,11 +72,6 @@ export const CreateInvoiceForm = (p: Prop) => {
             items={dropdownItems}
             placeholder="Select Condition"
             name="payment"
-            itemSelected={
-              p.invoice && p.typeComponent == "view"
-                ? p.invoice.paymentMethod.paymentMethod
-                : ""
-            }
           />
         </div>
         <div className=" w-1/2">
@@ -86,14 +83,12 @@ export const CreateInvoiceForm = (p: Prop) => {
         </div>
       </div>
       <div className="w-full pr-2 flex justify-end ">
-        {typeComponent === "add" && (
-          <button
-            type="submit"
-            className="bg-primary p-1 rounded-md text-firstWhite"
-          >
-            <FaArrowRight />
-          </button>
-        )}
+        <button
+          type="submit"
+          className="bg-primary p-1 rounded-md text-firstWhite"
+        >
+          <FaArrowRight />
+        </button>
       </div>
     </form>
   );

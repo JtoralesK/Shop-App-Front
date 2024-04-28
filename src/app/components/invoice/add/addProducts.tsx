@@ -34,8 +34,6 @@ export function AddProducts(p: Prop) {
       };
       if (p.addProduct) {
         const a = [...invoice.invoiceItems, obj];
-        console.log("lo quee llega:", invoice);
-        console.log("lo quee se agrega:", obj);
         p.addProduct([...invoice.invoiceItems, obj]);
       }
     }
