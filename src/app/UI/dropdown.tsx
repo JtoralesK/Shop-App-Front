@@ -7,15 +7,19 @@ type Prop = {
   itemSelected?: string;
   name: string;
   h?: string;
+  disabled?: boolean;
 };
 export const Dropdown = (p: Prop) => {
+  const { disabled } = p;
   const itemSelected = p.itemSelected || "";
   const [selectedItem, setSelectedItem] = useState(itemSelected);
   const [itemId, setItemId] = useState(0);
 
   const [isOpen, setIsOpen] = useState(false);
   const dropdownClick = () => {
-    setIsOpen(!isOpen);
+    if (!p.disabled) {
+      setIsOpen(!isOpen);
+    }
   };
   const handleItemClick = (item: string, id: number) => {
     setSelectedItem(item);
@@ -30,7 +34,9 @@ export const Dropdown = (p: Prop) => {
           <button
             type="button"
             onClick={dropdownClick}
-            className=" h-9 flex flex-row w-full items-center justify-between w-full rounded-md  bg-gray-100 px-2 text-sm font-medium text-gray-700 border-2 "
+            className={` h-9 flex flex-row w-full items-center justify-between w-full rounded-md  bg-gray-100 px-2 text-sm font-medium text-gray-700 border-2 ${
+              disabled ? "cursor-not-allowed" : "cursor-pointer"
+            }`}
           >
             {selectedItem || p.placeholder}
             <input value={itemId} name={p.name} type="hidden" />
@@ -40,7 +46,7 @@ export const Dropdown = (p: Prop) => {
               type="hidden"
             />
 
-            <div className="ml-4">
+            <div className={`ml-4 ${disabled && "hidden"}`}>
               {isOpen ? <FaArrowUp /> : <FaArrowDown />}
             </div>
           </button>

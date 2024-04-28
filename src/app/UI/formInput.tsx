@@ -9,9 +9,10 @@ type Prop = {
   placeholder: string;
   name: string;
   pattern?: string;
+  type: string;
 };
 
-export const FormInput = (props: Prop) => {
+export const FormInputValidate = (props: Prop) => {
   const [focused, setFocused] = useState(false);
   const {
     label,
@@ -45,6 +46,7 @@ export const FormInput = (props: Prop) => {
           placeholder={placeholder}
           onFocus={() => setFocused(false)}
           required
+          type={props.type}
           className={`w-full h-9 border-2   bg-gray-100 rounded-md px-2 ${
             focused && "border-red-500"
           }`}
@@ -55,6 +57,28 @@ export const FormInput = (props: Prop) => {
         >
           {errorMessage}
         </span>
+      </div>
+    </DefaultLabel>
+  );
+};
+
+type Prop1 = {
+  label: string;
+  placeholder: string;
+  name: string;
+};
+
+export const FormInput = (props: Prop1) => {
+  const { label, placeholder, name } = props;
+  return (
+    <DefaultLabel text={label}>
+      <div>
+        <input
+          name={name}
+          placeholder={placeholder}
+          className={`w-full h-9 border-2   bg-gray-100 rounded-md px-2`}
+        />
+        <span className="text-red-500 text-sm"></span>
       </div>
     </DefaultLabel>
   );

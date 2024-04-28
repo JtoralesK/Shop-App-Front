@@ -1,5 +1,5 @@
 "use client";
-import { DefaultLabel } from "./labelText";
+import { DefaultLabel } from "./DefaultLabel";
 type PickerProp = {
   text: string;
   value?: string;

@@ -10,6 +10,7 @@ export const LabelText = (props: any) => {
     disabled,
     required,
     name,
+
     ...inputProps
   } = props;
   return (
@@ -24,6 +25,9 @@ export const LabelText = (props: any) => {
         onChange={(e) => onChange && onChange(e.target.value)}
         readOnly={disabled ? disabled : false}
         {...(required && { required: true })}
+        name={name}
+        min={0}
+        value={value}
       />
     </DefaultLabel>
   );
