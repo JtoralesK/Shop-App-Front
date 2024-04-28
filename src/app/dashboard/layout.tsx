@@ -2,6 +2,9 @@ import { Inter } from "next/font/google";
 import { Sidebar } from "../UI/sidebar/sidebar";
 import { Navbar } from "../UI/navbar";
 import { auth } from "../auth";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+
 const inter = Inter({ subsets: ["latin"] });
 type Props = {
   children: React.ReactNode;
@@ -18,6 +21,7 @@ export default async function Layout(p: Props) {
           {p.children}
         </div>
       </section>
+      <ToastContainer />
     </div>
   );
 }
