@@ -33,7 +33,6 @@ export const SaveUserAction = async (state: any, FormData: FormData) => {
     confirmedPassword,
   } = Object.fromEntries(FormData);
   let ok = false;
-  console.log(postalCode, 12412414);
   try {
     const user = userSchema.parse({
       name: firstName,
