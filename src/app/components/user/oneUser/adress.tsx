@@ -15,9 +15,8 @@ export const Adress = (p: Props) => {
       <div className="w-full flex flex-col gap-2">
         <div className="w-full flex flex-wrap ">
           {addressInputs.map((input) => (
-            <div className="w-1/3 px-2 justify-around">
+            <div key={input.id} className="w-1/3 px-2 justify-around">
               <LabelText
-                key={input.id}
                 text={input.label}
                 placeholder={obj[input.name]}
                 type={input.type}
@@ -26,9 +25,8 @@ export const Adress = (p: Props) => {
             </div>
           ))}
           {passwordInputs.map((input) => (
-            <div className="w-1/3 px-2 justify-around">
+            <div key={input.id} className="w-1/3 px-2 justify-around">
               <LabelText
-                key={input.id}
                 text={input.label}
                 placeholder={input.placeholder}
                 type={input.type}

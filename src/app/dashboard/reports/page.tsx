@@ -15,7 +15,7 @@ export default function Reports() {
             <DemoComponent />
           </div>
           <div className=" h-full w-5/12 p-3 bg-white rounded-lg">
-            <h2 className="h-[8%] text-center">Stock's products</h2>
+            <h2 className="h-[8%] text-center">Stock&apos;s products</h2>
             <div className="w-full h-[92%]">
               <DoughnutComponent />
             </div>

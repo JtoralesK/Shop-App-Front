@@ -18,9 +18,8 @@ export const PersonalInformation = (p: Props) => {
       <div className="w-full flex flex-col gap-3">
         <div className="flex flex-wrap ">
           {inputs.map((input) => (
-            <div className="w-1/3 px-2 justify-around">
+            <div key={input.id} className="w-1/3 px-2 justify-around">
               <LabelText
-                key={input.id}
                 text={input.label}
                 placeholder={obj[input.name]}
                 type={input.type}
