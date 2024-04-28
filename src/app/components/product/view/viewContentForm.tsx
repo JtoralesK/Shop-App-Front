@@ -8,11 +8,15 @@ type Props = {
   item: Product;
 };
 
-export function EditContentForm({ item }: Props) {
+export function ContentForm({ item }: Props) {
   return (
     <>
-      <input type="hidden" name="id" value={item.id} />
-      <LabelText text="Product name" placeholder={item.name} name="name" />
+      <LabelText
+        text="Product name"
+        placeholder={item.name}
+        name="name"
+        disabled={true}
+      />
       <p className="text-gray-500 font-medium">Categories</p>
       <div className="flex flex-row gap-1  items-center">
         <Dropdown
@@ -20,32 +24,35 @@ export function EditContentForm({ item }: Props) {
           placeholder="Clothes Category"
           name="productCategoryId"
           itemSelected={item.productCategory.productCategory}
+          disabled={true}
         />
         <Dropdown
           items={Genders}
           name="genderId"
-          itemSelected={item.gender.genderType}
           placeholder="Select Gender"
+          itemSelected={item.gender.genderType}
+          disabled={true}
         />
       </div>
       <LabelText
         name="description"
         placeholder={item.description}
         text="Describe the product"
+        disabled={true}
       />
       <div className="flex flex-row gap-1  items-center">
         <LabelText
           placeholder={item.stock.toString()}
           text="Stock"
           name="stock"
-          min="0"
           type="number"
+          disabled={true}
         />
         <LabelText
           placeholder={item.price.toString()}
           text="Price"
           name="price"
-          min="0"
+          disabled={true}
           type="number"
         />
       </div>

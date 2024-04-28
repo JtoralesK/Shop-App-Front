@@ -28,8 +28,8 @@ export function ContentForm({ item }: Props) {
         <Dropdown
           items={Genders}
           name="genderId"
-          itemSelected={item.gender.genderType}
           placeholder="Select Gender"
+          itemSelected={item.gender.genderType}
         />
       </div>
       <LabelText
@@ -43,12 +43,14 @@ export function ContentForm({ item }: Props) {
           placeholder={item.stock.toString()}
           text="Stock"
           name="stock"
+          type="number"
           required
         />
         <LabelText
           placeholder={item.price.toString()}
           text="Price"
           name="price"
+          type="number"
           required
         />
       </div>

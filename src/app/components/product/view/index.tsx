@@ -1,5 +1,5 @@
 "use client";
-import { ContentForm } from "../contentForm";
+import { ContentForm } from "./viewContentForm";
 import Image from "next/image";
 import { Product } from "@/app/utilities/products";
 import { DatePickerLabel } from "@/app/UI/datespeaker";
@@ -13,7 +13,7 @@ export function ViewProductComponent({ item }: Prop) {
       form={
         <form className="w-7/12 h-full  flex flex-col p-3 gap-2">
           <ContentForm item={item} />
-          <DatePickerLabel value={item.createdAt} text="Date" />
+          <DatePickerLabel value={item.createdAt} text="Date" disabled={true} />
         </form>
       }
       image={

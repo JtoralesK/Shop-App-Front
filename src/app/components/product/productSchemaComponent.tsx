@@ -1,4 +1,4 @@
-import { Product } from "@/app/utilities/products";
+import { FaArrowLeft } from "react-icons/fa";
 type Prop = {
   form: JSX.Element;
   image: JSX.Element;
@@ -8,8 +8,18 @@ export function ProductSchema({ form, image, title }: Prop) {
   return (
     <div className="flex justify-center">
       <div
-        className={`w-8/12 h-[82vh] rounded-lg bg-firstWhite p-4 flex flex-col justify-center`}
+        className={`w-[800px] h-[82vh] rounded-lg bg-firstWhite p-4 flex flex-col justify-center`}
       >
+        <div className="w-4 px-2">
+          <button
+            onClick={() => {
+              window.history.back();
+            }}
+            className="bg-primary p-1 rounded-md text-firstWhite"
+          >
+            <FaArrowLeft />
+          </button>
+        </div>
         <div className="w-full h-1/6 flex justify-center items-center">
           <div className="text-center">
             <p className={`text-md font-medium`}>{title}</p>
