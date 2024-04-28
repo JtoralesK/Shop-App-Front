@@ -4,7 +4,7 @@ import Image from "next/image";
 import { authenticate } from "../lib/actions";
 import { useState } from "react";
 import { SubmitButton } from "@/app/UI/submitButton";
-import { FormInput } from "../UI/formInput";
+import { FormInputValidate } from "../UI/formInput";
 import { inputs } from "../utilities/inputs/login";
 
 export default function Login() {
@@ -62,8 +62,9 @@ export default function Login() {
                     </h2>
 
                     {inputs.map((input) => (
-                      <FormInput
+                      <FormInputValidate
                         key={input.id}
+                        type={input.type}
                         label={input.label}
                         placeholder={input.placeholder}
                         errorMessage={input.errorMessage}
