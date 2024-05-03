@@ -18,10 +18,10 @@ export const deleteUserAction = async (FormData: FormData) => {
   redirect("/dashboard/users");
 };
 
-export const SaveUserAction = async (state: any, FormData: FormData) => {
+export const SaveUserAction = async (FormData: FormData) => {
   const {
     image,
-    firstName,
+    name,
     lastName,
     email,
     phoneNumber,
@@ -35,7 +35,7 @@ export const SaveUserAction = async (state: any, FormData: FormData) => {
   let ok = false;
   try {
     const user = userSchema.parse({
-      name: firstName,
+      name,
       lastName,
       email,
       password: confirmedPassword,
