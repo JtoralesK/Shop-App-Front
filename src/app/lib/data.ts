@@ -22,6 +22,14 @@ export const getAllUsers = async (page: number) => {
     },
   });
 };
+export const getUsersActiveCount = async () => {
+  return fetchApi({
+    dataFetch: {
+      url: "users/count",
+      method: "GET",
+    },
+  });
+};
 export const changeUserState = async (id: number) => {
   return await fetchApi({
     dataFetch: {
@@ -46,12 +54,44 @@ export const filteredProductsByName = async (q: any, page: number) => {
     dataFetch: { url, method: "GET", offset: page },
   });
 };
-export const getAllProducts = async (page: number) => {
+export const getAllProducts = async (page: number, limit?: number) => {
+  let url = "products/all?offset=" + (page - 1);
+  if (limit) url += "&limit=" + limit;
   return fetchApi({
     dataFetch: {
-      url: "products/all?offset=" + (page - 1),
+      url,
       method: "GET",
       offset: page,
+    },
+  });
+};
+export const getAllNewActiveProducts = async (page: number, limit?: number) => {
+  let url = "products/new?offset=" + (page - 1);
+  if (limit) url += "&limit=" + limit;
+  return fetchApi({
+    dataFetch: {
+      url,
+      method: "GET",
+      offset: page,
+    },
+  });
+};
+export const getAllProductsLowStock = async (page: number, limit?: number) => {
+  let url = "products/lowStock?offset=" + (page - 1);
+  if (limit) url += "&limit=" + limit;
+  return fetchApi({
+    dataFetch: {
+      url,
+      method: "GET",
+      offset: page,
+    },
+  });
+};
+export const findBestProductSold = async () => {
+  return await fetchApi({
+    dataFetch: {
+      url: "products/bestSeller",
+      method: "GET",
     },
   });
 };

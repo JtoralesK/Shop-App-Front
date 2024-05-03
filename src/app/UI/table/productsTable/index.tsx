@@ -19,6 +19,7 @@ export function TableProducts(p: Props) {
   const [stateModal, setStateModal] = useState(false);
 
   const changeUserState = (id: number, state: boolean) => {
+    console.log("change state", id, state);
     setOpen(!isOpen);
     setId(id);
     setStateModal(state);

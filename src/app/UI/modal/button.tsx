@@ -13,7 +13,7 @@ export function SubmitButton(p: Prop) {
     if (pending === false) {
       if (p.closeModal) p.closeModal(false);
     }
-  }, [pending, p]);
+  }, [pending]);
 
   return (
     <button

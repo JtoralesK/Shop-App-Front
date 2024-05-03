@@ -38,6 +38,7 @@ export function EditProductComponent({ item }: Prop) {
     }
     editProductAction(FormData);
   };
+  console.log(item.id);
   return (
     <ProductSchema
       form={
